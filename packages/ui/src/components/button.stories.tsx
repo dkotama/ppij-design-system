@@ -51,3 +51,33 @@ export const Disabled: Story = { args: { disabled: true } };
 export const LongText: Story = {
   args: { children: "Kirim pendaftaran dan lanjutkan ke langkah berikutnya" },
 };
+
+export const ActionIntents: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 20 }}>
+      <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+        <div style={{ display: "grid", gap: 8, justifyItems: "start" }}>
+          <Button>Simpan</Button>
+          <span style={{ fontSize: 13, color: "var(--color-muted-foreground)" }}>Normal: the standard action (default)</span>
+        </div>
+        <div style={{ display: "grid", gap: 8, justifyItems: "start" }}>
+          <Button variant="success">Setujui</Button>
+          <span style={{ fontSize: 13, color: "var(--color-muted-foreground)" }}>Confirm: approve or complete (success)</span>
+        </div>
+        <div style={{ display: "grid", gap: 8, justifyItems: "start" }}>
+          <Button variant="warning">Arsipkan</Button>
+          <span style={{ fontSize: 13, color: "var(--color-muted-foreground)" }}>Alert: consequential, needs care (warning)</span>
+        </div>
+        <div style={{ display: "grid", gap: 8, justifyItems: "start" }}>
+          <Button variant="destructive">Hapus</Button>
+          <span style={{ fontSize: 13, color: "var(--color-muted-foreground)" }}>Danger: destructive, always confirmed (destructive)</span>
+        </div>
+      </div>
+      <p style={{ margin: 0, maxWidth: "65ch", color: "var(--color-muted-foreground)", fontSize: 14, lineHeight: 1.6 }}>
+        One surface carries one primary intent. Danger actions are never the
+        default button on a surface; they sit apart and open an AlertDialog
+        that names the action in full before anything happens.
+      </p>
+    </div>
+  ),
+};

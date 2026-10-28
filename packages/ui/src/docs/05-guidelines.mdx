@@ -138,3 +138,18 @@ same surface, on every page.
     </p>
   </div>
 </div>
+
+## Button action intents
+
+A button states its intent by color. The words on the button say what
+happens; the variant says how much care it needs.
+
+| Intent | Variant | Use for |
+| --- | --- | --- |
+| Normal | default | The standard action on a surface: save, submit, continue |
+| Confirm | success | Approving or completing: Setujui, Konfirmasi, Selesaikan |
+| Alert | warning | Consequential but reversible: Arsipkan, Nonaktifkan |
+| Danger | destructive | Destructive: Hapus. Always behind an AlertDialog |
+
+One surface carries one primary intent. Danger is never the primary
+button on a surface; it sits apart and confirms first.
