@@ -1,0 +1,83 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/08 UX Philosophy" />
+
+# UX Philosophy
+
+How PPIJ surfaces behave, and why. The [Guidelines](?path=/docs/docs-05-guidelines--docs)
+say what components must look like. This page says how pages must act.
+It exists because the old admin grew page by page with no shared model,
+and every page made its own choices. This page is that model.
+
+## How to use this page
+
+**Tier 1 rules never bend.** Tokens only, Tabler icons only, cards always
+white, consume the package and never copy it, no story no component. They
+are stated in the Guidelines and they are not repeated here.
+
+**Tier 2 principles are defaults, not laws.** A page may deviate when the
+case is argued once and recorded: the deviation is written on that page's
+task card with the principle, the page, the reason, and the date of the
+owner's decision. A recorded exception is a decision. An unrecorded
+deviation is drift, and drift is what this page exists to stop.
+
+## The principles
+
+### 1. Read first, edit on intent
+
+A surface opens as reading. Text sits in calm islands that a person can
+scan, compare, and print. Editing starts from an explicit action, usually
+an Edit button, and ends with save or cancel. Nothing on a reading surface
+is secretly a form.
+
+The member profile is the model: identity, membership, and documents are
+read first, and each island carries its own edit action. The old
+`/admin/organisasi` page is the counterexample: it opens as one long form,
+so reading the organisation profile means scanning input boxes.
+
+### 2. One primary action per surface
+
+Each surface has exactly one red primary action: the single most likely
+next step for the person looking at it. Everything else is quieter:
+outline, ghost, or a text action. When two actions both look primary,
+neither is, and the person has to stop and think. Navigation state is
+never red; red means "do this".
+
+### 3. States are designed, not improvised
+
+Every data surface ships with its loading, empty, error, and success
+states designed, using Skeleton, Empty, Alert, and the saving indicator
+from this system. A spinner alone in an empty page is not a loading
+state, and a blank page is not an empty state.
+
+### 4. Surface temperaments
+
+The three surfaces share one system and keep different temperaments.
+**Public** is brand-first: generous space, the red leads, photography and
+the emblem carry the message. **Portal** is quiet and task-focused: a
+member came to finish something, so the system gets out of the way.
+**Admin** is dense but calm: more data per screen, the same spacing
+rhythm, no decoration that competes with the data.
+
+### 5. Navigation follows the hand
+
+On a phone, the thumb rules: the BottomBar carries the five main
+destinations within thumb reach. On tablet and desktop, the Sidebar
+carries navigation and the TopBar carries identity, section, and account.
+A person should never hunt for the way to the next section.
+
+### 6. Words before widgets
+
+Language switching is a quiet text action or a labelled menu, never boxed
+language codes. Labels say what a thing is in the reader's language;
+icons support words, they do not replace them. When a control needs a
+code or an abbreviation to fit, the control is too small, not the word.
+
+### 7. Modals are for decisions, drawers are for work
+
+Pick the smallest surface that fits the task. A Dialog asks for a
+decision or shows a notice that must be acknowledged. An AlertDialog
+confirms a destructive action and names it in full. A drawer or bottom
+sheet holds work: multi-field forms and multi-step review, where the
+person needs room and context. A toast reports a finished action and
+then leaves. The full matrix is in the Guidelines.
