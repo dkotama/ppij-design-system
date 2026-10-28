@@ -3,7 +3,10 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "workspaces": ["packages/ui"],
+  "workspaces": [
+    "packages/ui",
+    "prototypes/redesign-v1"
+  ],
   "scripts": {
     "tokens": "node scripts/generate-tokens.mjs",
     "build": "node scripts/generate-tokens.mjs && npm run build -w ppij-design-system && npm run build-storybook -w ppij-design-system",

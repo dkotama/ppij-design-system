@@ -31,6 +31,12 @@ jobs:
         run: npm run lint
       - name: Build package and Storybook
         run: npm run build
+      - name: Build redesign prototype and place it under /redesign-v1
+        if: github.ref == 'refs/heads/redesign-v1'
+        run: |
+          npm run build -w ppij-redesign-v1
+          mkdir -p storybook-static/redesign-v1
+          cp -r prototypes/redesign-v1/dist/. storybook-static/redesign-v1/
       - name: Upload Storybook to Pages
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
