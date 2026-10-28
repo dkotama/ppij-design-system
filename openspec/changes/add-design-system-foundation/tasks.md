@@ -13,6 +13,13 @@
 - [ ] Add the Empty component with a story
 - [ ] Promote PageHeader, DataTable shell, and wide Drawer patterns
 
-## 4. Gate
+## 4. Package and guideline site
+- [ ] Configure one npm package `ppij-design-system` with root, tokens.css,
+  and tokens.json exports, and prove a clean consumer install
+- [ ] Add Storybook Docs guideline pages (Introduction, Brand, Colors,
+  Typography, component guidelines)
+- [ ] Publish the static Storybook to GitHub Pages from CI
+
+## 5. Gate
 - [ ] Replace the Makefile TODO targets with real build, lint, and test commands
 - [ ] Run scripts/gate.sh green on a clean tree

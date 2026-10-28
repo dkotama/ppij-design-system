@@ -18,9 +18,25 @@ can download it without credentials.
   each with a Storybook story beside it
 - Storybook: the human view of the whole system, grouped Public, Portal, Admin
 
+## Install
+
+```sh
+npm install ppij-design-system
+```
+
+Exports: React components from the package root,
+`ppij-design-system/tokens.css`, and `ppij-design-system/tokens.json`.
+Until the first npm publish, install the same package from the public GitHub
+repo: `npm install github:ppij-dev/ppij-design-system`.
+
+## View the guideline
+
+The design guideline and every component live in Storybook, published at
+https://ppij-dev.github.io/ppij-design-system/
+
 ## Consume, never copy
 
-Applications pin a released version of `@ppij/tokens` and `@ppij/ui`.
+Applications pin a released version of `ppij-design-system`.
 Upgrading is a version bump plus a visual check. Copying a component or a token
 value into an application is prohibited.
 

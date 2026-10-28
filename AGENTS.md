@@ -36,6 +36,10 @@ email surfaces.
   No text glyphs as icons.
 - Tokens are framework free: tokens.json plus CSS variables are canonical.
   React components are one consumer of the tokens, not the source.
-- Consumers pin a released version. Never copy a component into an app.
+- Consumers install the npm package `ppij-design-system` and pin its version.
+  Until npm publish, they install it from the public GitHub repo. Never copy
+  a component into an app. GitHub Packages is not used (it needs a token for
+  public packages). The guideline lives as Storybook Docs pages, published
+  to GitHub Pages.
 - UI work runs Impeccable with full setup: context launcher, the named
   command playbook, and craft-floor before any UI edit.

@@ -59,3 +59,31 @@ Product mode, not brand mode, for portal and admin surfaces.
    DataTable presentation shell, wide Drawer pattern
 6. Each story covers default, loading, empty, error, disabled, long text
    where the state applies to that component
+
+## Distribution: npm package, owner decision 2026-10-28
+
+Yes, it installs as an npm dependency. One package is the whole system:
+
+- Package name: `ppij-design-system` (checked free on the npm registry
+  2026-10-28, as were ppij-ui and ppij-tokens; a scoped @ppij name is not
+  used because scope ownership on npm is unproven)
+- Install: `npm install ppij-design-system`
+- Exports: the React components from the package root,
+  `ppij-design-system/tokens.css` for CSS variables, and
+  `ppij-design-system/tokens.json` for framework free token values
+- Until the first npm publish, the same package installs anonymously from
+  the public GitHub repo: `npm install github:ppij-dev/ppij-design-system`
+  or a GitHub release tarball. GitHub Packages is not used: it requires a
+  token even for public packages, which breaks anonymous agent installs.
+- Publishing to npmjs needs the owner npm account at publish time. That is a
+  release step, not a build blocker.
+
+## Guideline: viewable in Storybook, owner decision 2026-10-28
+
+The design guideline is not a markdown file that humans must hunt for. The
+guideline lives as Storybook Docs pages (Introduction, Brand, Colors,
+Typography, and the component guidelines carried from
+ppij-identity-sso design/1.0.6/guideline.md) beside the component stories.
+The static Storybook build is published to GitHub Pages from CI, so any
+human or agent can view the guideline and every component at
+https://ppij-dev.github.io/ppij-design-system/ with no login.
