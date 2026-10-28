@@ -64,3 +64,5 @@ export {
 } from "./components/alert-dialog";
 export { Toaster } from "./components/sonner";
 export { SearchFilter, type SearchFilterProps, type ActiveFilter } from "./components/search-filter";
+export { UnitCard, type UnitCardProps } from "./components/unit-card";
+export { StatCard, type StatCardProps } from "./components/stat-card";
