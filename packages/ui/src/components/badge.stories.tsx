@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "./badge";
+import { IconCheck, IconClock } from "@tabler/icons-react";
 
 const meta: Meta<typeof Badge> = {
   title: "Portal/Badge",
@@ -17,6 +18,14 @@ export const Variants: Story = {
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="outline">Outline</Badge>
       <Badge variant="destructive">Ditolak</Badge>
+    </div>
+  ),
+};
+export const WithIcon: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: 8 }}>
+      <Badge><IconCheck size={12} /> Terverifikasi</Badge>
+      <Badge variant="secondary"><IconClock size={12} /> Menunggu</Badge>
     </div>
   ),
 };

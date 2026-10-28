@@ -1,0 +1,48 @@
+import { Meta } from "@storybook/blocks";
+import {
+  IconHome, IconUser, IconUsers, IconSettings, IconBell, IconSearch,
+  IconPlus, IconCheck, IconX, IconChevronRight, IconChevronDown,
+  IconCalendar, IconFileText, IconMail, IconMapPin, IconClock,
+  IconShieldCheck, IconId, IconBuilding, IconSend, IconDownload,
+  IconEdit, IconTrash, IconEye, IconLogout,
+} from "@tabler/icons-react";
+
+<Meta title="Icons" />
+
+# Icons
+
+One icon family only: **Tabler Icons** (`@tabler/icons-react`). Never use a
+text glyph as an icon, and never mix in a second icon family.
+
+export const icons = [
+  ["IconHome", IconHome], ["IconUser", IconUser], ["IconUsers", IconUsers],
+  ["IconSettings", IconSettings], ["IconBell", IconBell], ["IconSearch", IconSearch],
+  ["IconPlus", IconPlus], ["IconCheck", IconCheck], ["IconX", IconX],
+  ["IconChevronRight", IconChevronRight], ["IconChevronDown", IconChevronDown],
+  ["IconCalendar", IconCalendar], ["IconFileText", IconFileText], ["IconMail", IconMail],
+  ["IconMapPin", IconMapPin], ["IconClock", IconClock], ["IconShieldCheck", IconShieldCheck],
+  ["IconId", IconId], ["IconBuilding", IconBuilding], ["IconSend", IconSend],
+  ["IconDownload", IconDownload], ["IconEdit", IconEdit], ["IconTrash", IconTrash],
+  ["IconEye", IconEye], ["IconLogout", IconLogout],
+];
+
+<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 10 }}>
+  {icons.map(([name, Icon]) => (
+    <div key={name} style={{ border: "1px solid #e3e5e8", borderRadius: 10, padding: 12, background: "#fff", textAlign: "center" }}>
+      <Icon size={24} stroke={1.8} />
+      <div style={{ fontSize: 11, marginTop: 8, color: "#5b6168" }}>{name}</div>
+    </div>
+  ))}
+</div>
+
+## Usage rules
+
+- Size: 16px inside buttons and badges, 20px in lists, 24px as a standalone
+  action. Keep one size step per surface.
+- Stroke: 1.8 by default, matching the Tabler outline style.
+- Color: inherit the text color (`currentColor`). Never hard code an icon
+  color outside a token.
+- Meaning: an icon supports a label, it does not replace it, except for
+  familiar toolbar actions that carry an accessible name.
+- In components, icons arrive as children or props, as the Button and Badge
+  stories show. A component never imports a page-specific icon set.

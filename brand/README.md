@@ -11,3 +11,14 @@
 
 All values here must match tokens/tokens.json. The tokens file wins any
 conflict; fix this page in the same commit.
+
+
+## Logo permission and form
+
+Use of the PPIJ logo requires permission from PPI Jepang first. The logo is
+shown as it is: the AD/ART (Anggaran Dasar dan Anggaran Rumah Tangga) of
+PPIJ prescribes the logo, and the logo shall be displayed in that
+prescribed form (source: AD/ART PPIJ). Never invert, recolor, outline,
+rotate, stretch, or crop it, and never place it on a background where the
+prescribed colors cannot read as themselves. See the Logo page in
+Storybook for the permitted contexts and sizes.
