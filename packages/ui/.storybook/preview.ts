@@ -21,6 +21,13 @@ const preview: Preview = {
       },
     },
     docs: { toc: true, theme: ppijTheme },
+    backgrounds: {
+      default: "brand",
+      values: [
+        { name: "brand", value: "#f6f6f4" },
+        { name: "white", value: "#ffffff" },
+      ],
+    },
   },
 };
 export default preview;

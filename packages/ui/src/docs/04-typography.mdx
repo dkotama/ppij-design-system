@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/blocks";
+import { Card } from "../components/card";
 
 <Meta title="Typography" />
 
@@ -7,7 +8,7 @@ import { Meta } from "@storybook/blocks";
 Font stack: **Plus Jakarta Sans**, **Noto Sans JP**, system-ui, sans-serif.
 One stack serves the public site, the portal, and admin.
 
-<div style={{ border: "1px solid #e3e5e8", borderRadius: 10, padding: 16, background: "#fff" }}>
+<Card style={{ padding: 20 }}>
   <div style={{ fontSize: 32, fontWeight: 700, lineHeight: 1.2 }}>Pendaftaran Anggota PPIJ</div>
   <div style={{ fontSize: 20, fontWeight: 600, marginTop: 12 }}>Verifikasi berkas oleh admin wilayah</div>
   <p style={{ fontSize: 16, marginTop: 12 }}>
@@ -15,7 +16,7 @@ One stack serves the public site, the portal, and admin.
     telepon dan desktop. 管理画面も同じ書体とスケールを使います。
   </p>
   <div style={{ fontSize: 13, color: "#5b6168" }}>Teks pendukung memakai warna muted dari token.</div>
-</div>
+</Card>
 
 Rules: never introduce a second font family; never set type in a component
 with a raw pixel value when a scale step exists; long words and long Japanese
@@ -32,7 +33,7 @@ Type breathes on a 4px base scale. Steps: **4, 8, 12, 16, 24, 32, 48**.
 
 ## Long text sample
 
-<div style={{ border: "1px solid #e3e5e8", borderRadius: 10, padding: 24, background: "#fff", maxWidth: "65ch" }}>
+<Card style={{ padding: 24, maxWidth: "65ch" }}>
   <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1.25 }}>Pendaftaran anggota baru PPI Jepang periode 2026</div>
   <p style={{ marginTop: 16, lineHeight: 1.6 }}>
     Persatuan Pelajar Indonesia di Jepang (PPIJ) membuka pendaftaran anggota baru untuk periode kepengurusan 2026.
@@ -62,5 +63,5 @@ Type breathes on a 4px base scale. Steps: **4, 8, 12, 16, 24, 32, 48**.
     keanggotaan. Kartu tersebut menjadi bukti keanggotaan resmi dan digunakan untuk mengakses layanan serta kegiatan
     PPIJ di seluruh Jepang. 会員の皆さまには、登録完了後にデジタル会員証が発行されます。
   </p>
-</div>
+</Card>
 

@@ -59,3 +59,30 @@ export const tag = (ok) => ({ display: "inline-flex", alignItems: "center", gap:
     </p>
   </div>
 </div>
+
+## Surfaces: cards are always white
+
+export const surfaceBox = { border: "1px solid #e3e5e8", borderRadius: 10, padding: 14, background: "#f6f6f4" };
+
+<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 12 }}>
+  <div style={surfaceBox}>
+    <div style={tag(true)}><IconCheck size={14} /> Do</div>
+    <div style={{ background: "#ffffff", border: "1px solid #e3e5e8", borderRadius: 10, padding: 14 }}>
+      <strong>Keanggotaan PPIJ</strong>
+      <p style={{ fontSize: 13, color: "#5b6168", margin: "6px 0 0" }}>Isi kartu tampil di atas putih.</p>
+    </div>
+    <p style={{ fontSize: 13, color: "#5b6168", margin: "8px 0 0" }}>
+      A card always uses the white card surface (`bg-card`) on the brand background. White is what separates content from the page on every surface.
+    </p>
+  </div>
+  <div style={surfaceBox}>
+    <div style={tag(false)}><IconX size={14} /> Do not</div>
+    <div style={{ background: "#f6f6f4", border: "1px dashed #e3e5e8", borderRadius: 10, padding: 14 }}>
+      <strong>Keanggotaan PPIJ</strong>
+      <p style={{ fontSize: 13, color: "#5b6168", margin: "6px 0 0" }}>Kartu transparan menyatu dengan halaman.</p>
+    </div>
+    <p style={{ fontSize: 13, color: "#5b6168", margin: "8px 0 0" }}>
+      Never tint a card with the page background, never make it transparent, and never recolor a card surface outside the tokens.
+    </p>
+  </div>
+</div>

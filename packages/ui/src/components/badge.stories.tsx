@@ -30,3 +30,15 @@ export const WithIcon: Story = {
   ),
 };
 export const LongText: Story = { args: { children: "Menunggu verifikasi berkas tambahan" } };
+
+export const StatusColors: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <Badge variant="success">Aktif</Badge>
+      <Badge variant="warning">Segera berakhir</Badge>
+      <Badge variant="info">Baru</Badge>
+      <Badge variant="destructive">Ditolak</Badge>
+      <Badge variant="secondary">Menunggu</Badge>
+    </div>
+  ),
+};

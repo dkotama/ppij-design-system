@@ -52,3 +52,4 @@ export { PageHeader, type PageHeaderProps } from "./components/page-header";
 export { DataTable, type DataTableProps } from "./components/data-table";
 export { TopBar, type TopBarProps, type TopBarLink } from "./components/top-bar";
 export { ViewToggle, type ViewToggleProps, type ViewToggleOption } from "./components/view-toggle";
+export { BottomBar, type BottomBarProps, type BottomBarItem } from "./components/bottom-bar";

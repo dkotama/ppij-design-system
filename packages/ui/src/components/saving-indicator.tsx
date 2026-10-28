@@ -44,13 +44,13 @@ export function SavingIndicator({
       className={cn(
         "inline-flex items-center gap-1.5 text-xs font-medium transition-opacity motion-reduce:transition-none",
         isSaving && "text-brand-muted",
-        isSaved && "text-emerald-700 dark:text-emerald-400",
+        isSaved && "text-success",
         isError && "text-brand-red",
         className
       )}
     >
       {isSaving && <Spinner size="xs" decorative />}
-      {isSaved && <IconCheck className="size-3.5 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />}
+      {isSaved && <IconCheck className="size-3.5 text-success" aria-hidden="true" />}
       {isError && <IconAlertCircle className="size-3.5 text-brand-red" aria-hidden="true" />}
       <span>
         {isSaving && (savingText ?? defaultSaving)}

@@ -6,11 +6,11 @@ const tokens = JSON.parse(readFileSync(new URL("../tokens/tokens.json", import.m
 const p = tokens.primitive;
 const s = tokens.semantic;
 
-const brandVars = ["brand-red", "brand-ink", "brand-muted", "brand-border", "brand-bg"]
+const brandVars = ["brand-red", "brand-ink", "brand-muted", "brand-border", "brand-bg", "status-green", "status-amber", "status-blue"]
   .map((k) => `  --${k}: ${p[k]};`).join("\n");
 const semanticVars = Object.entries(s).map(([k, v]) => `  --${k}: ${v};`).join("\n");
 const themeColors = [
-  ...["brand-red", "brand-ink", "brand-muted", "brand-border", "brand-bg"].map((k) => `  --color-${k}: var(--${k});`),
+  ...["brand-red", "brand-ink", "brand-muted", "brand-border", "brand-bg", "status-green", "status-amber", "status-blue"].map((k) => `  --color-${k}: var(--${k});`),
   ...Object.keys(s).map((k) => `  --color-${k}: var(--${k});`),
 ].join("\n");
 
