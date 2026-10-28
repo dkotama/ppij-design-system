@@ -15,10 +15,12 @@ export interface ViewToggleProps {
 }
 
 /**
- * Segmented pill toggle, generalized from the portal ViewSwitch:
- * the current side is filled PPIJ red and marked aria-current, the
- * other side is quiet ink. Navigation arrives as props (labels and
- * hrefs); role and visibility rules stay in the application.
+ * Segmented toggle, generalized from the portal ViewSwitch: a quiet
+ * grey track holds the segments; the current side is a white segment
+ * with ink text and a small shadow, the other side is muted text.
+ * Red is reserved for primary actions and focus, never for navigation
+ * state. Navigation arrives as props (labels and hrefs); role and
+ * visibility rules stay in the application.
  */
 export function ViewToggle({ options, ariaLabel, className }: ViewToggleProps) {
   return (
@@ -26,7 +28,7 @@ export function ViewToggle({ options, ariaLabel, className }: ViewToggleProps) {
       <div
         role="group"
         aria-label={ariaLabel}
-        className="inline-flex items-center rounded-full border border-brand-border bg-card p-0.5"
+        className="inline-flex items-center gap-1 rounded-full bg-secondary p-1"
       >
         {options.map((option) => (
           <a
@@ -34,8 +36,10 @@ export function ViewToggle({ options, ariaLabel, className }: ViewToggleProps) {
             href={option.href}
             aria-current={option.current ? "page" : undefined}
             className={cn(
-              "flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 text-sm font-semibold no-underline focus-visible:outline-2 focus-visible:outline-brand-red",
-              option.current ? "bg-brand-red text-white" : "text-brand-ink hover:text-brand-red"
+              "flex h-10 min-w-24 items-center justify-center rounded-full px-4 text-sm no-underline focus-visible:outline-2 focus-visible:outline-brand-red",
+              option.current
+                ? "bg-card font-semibold text-brand-ink shadow-sm"
+                : "text-muted-foreground hover:text-brand-ink"
             )}
           >
             {option.label}

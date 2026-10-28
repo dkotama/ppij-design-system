@@ -21,7 +21,7 @@ export const PublicSite: Story = {
         { label: "Kegiatan", href: "#" },
       ]}
       actions={<>
-        <button type="button" style={{ background: "none", border: 0, fontSize: 14, cursor: "pointer" }}>Bahasa Indonesia</button>
+        <span className="hidden sm:inline"><button type="button" style={{ background: "none", border: 0, fontSize: 14, cursor: "pointer" }}>Bahasa Indonesia</button></span>
         <Button size="sm">Masuk</Button>
       </>}
     />

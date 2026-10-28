@@ -31,7 +31,7 @@ function Demo() {
       >
         {step === 1 ? (
           <div style={{ display: "grid", gap: 10 }}>
-            <div style={{ display: "grid", gap: 6 }}><Label>Nama</Label><Input defaultValue="Darma Kotama" readOnly /></div>
+            <div style={{ display: "grid", gap: 6 }}><Label>Nama</Label><Input defaultValue="I Nyoman Darma Kotama" readOnly /></div>
             <div style={{ display: "grid", gap: 6 }}><Label>Komsat</Label><Input defaultValue="Okayama" readOnly /></div>
           </div>
         ) : (

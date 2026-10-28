@@ -25,4 +25,29 @@ export const ErrorState: Story = {
     </div>
   ),
 };
-export const LongValue: Story = { args: { defaultValue: "Darma Kotama, Politeknik Negeri Bali, Okayama University" } };
+export const LongValue: Story = { args: { defaultValue: "I Nyoman Darma Kotama, Politeknik Negeri Bali, Okayama University" } };
+
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 12, maxWidth: 420 }}>
+      <Input data-size="sm" placeholder="Kecil (32px)" />
+      <Input placeholder="Bawaan (36px)" />
+      <Input data-size="lg" placeholder="Besar (44px)" />
+    </div>
+  ),
+};
+
+export const OnAnySurface: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 16 }}>
+      <div style={{ background: "var(--color-card)", border: "1px solid var(--color-border)", borderRadius: 12, padding: 16, display: "grid", gap: 6 }}>
+        <Label>Di atas kartu putih</Label>
+        <Input placeholder="Bidang selalu putih" />
+      </div>
+      <div style={{ background: "var(--color-brand-cream)", borderRadius: 12, padding: 16, display: "grid", gap: 6 }}>
+        <Label>Di atas latar merek</Label>
+        <Input placeholder="Bidang selalu putih" />
+      </div>
+    </div>
+  ),
+};
