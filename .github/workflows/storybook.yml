@@ -2,7 +2,7 @@ name: Design system checks and Storybook preview
 
 on:
   push:
-    branches: [main]
+    branches: [main, redesign-v1]
   pull_request:
 
 permissions:
