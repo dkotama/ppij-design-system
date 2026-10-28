@@ -1,7 +1,8 @@
-import { IconHome, IconId, IconBell, IconUser, IconLanguage, IconCircleCheck } from "@tabler/icons-react";
+import { IconHome, IconId, IconBell, IconUser, IconCircleCheck, IconCheck, IconChevronDown } from "@tabler/icons-react";
 import {
   AccountMenu, Alert, AlertDescription, AlertTitle, Badge, BottomBar, Button,
-  Card, MemberCard, Progress,
+  Card, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
+  MemberCard, Progress,
 } from "ppij-design-system";
 
 export function PortalView({ onNavigate }: { onNavigate: (view: "wizard" | "profile") => void }) {
@@ -16,9 +17,18 @@ export function PortalView({ onNavigate }: { onNavigate: (view: "wizard" | "prof
           </span>
         </div>
         <div className="flex items-center gap-1.5">
-          <button type="button" className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm hover:bg-accent sm:flex">
-            <IconLanguage size={16} /> Bahasa Indonesia
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button type="button" className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm text-brand-ink outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring sm:flex" aria-label="Pilih bahasa">
+                Bahasa Indonesia <IconChevronDown size={14} />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem><IconCheck size={16} /> Bahasa Indonesia</DropdownMenuItem>
+              <DropdownMenuItem><span style={{ width: 16 }} /> English</DropdownMenuItem>
+              <DropdownMenuItem><span style={{ width: 16 }} /> 日本語</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <AccountMenu
             name="I Nyoman Darma Kotama"
             detail="Komsat Okayama"
