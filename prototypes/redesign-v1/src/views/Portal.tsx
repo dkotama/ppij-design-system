@@ -1,5 +1,5 @@
 import { IconHome, IconIdBadge2, IconSchool, IconUsers, IconCalendar } from "@tabler/icons-react";
-import { MemberCard, PortalShell, ServiceTiles, StatusCard } from "ppij-design-system";
+import { MemberCardBlock, PortalShell, ServiceTiles, StatusCard } from "ppij-design-system";
 import logoUrl from "../../../../brand/ppij-logo.png";
 
 export function PortalView({ onNavigate }: { onNavigate: (view: "wizard" | "profile") => void }) {
