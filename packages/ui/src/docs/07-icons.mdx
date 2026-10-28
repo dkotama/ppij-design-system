@@ -1,44 +1,143 @@
 import { Meta } from "@storybook/blocks";
-import {
-  IconHome, IconUser, IconUsers, IconSettings, IconBell, IconSearch,
-  IconPlus, IconCheck, IconX, IconChevronRight, IconChevronDown,
-  IconCalendar, IconFileText, IconMail, IconMapPin, IconClock,
-  IconShieldCheck, IconId, IconBuilding, IconSend, IconDownload,
-  IconEdit, IconTrash, IconEye, IconLogout,
-} from "@tabler/icons-react";
+import * as T from "@tabler/icons-react";
+import { Button } from "../components/button";
+import { Badge } from "../components/badge";
 
 <Meta title="Icons" />
 
 # Icons
 
 One icon family only: **Tabler Icons** (`@tabler/icons-react`). Never use a
-text glyph as an icon, and never mix in a second icon family.
+text glyph as an icon, and never mix in a second icon family. Pick icons
+from the curated set below first; reach for another Tabler icon only when
+none of these carries the meaning.
 
-export const icons = [
-  ["IconHome", IconHome], ["IconUser", IconUser], ["IconUsers", IconUsers],
-  ["IconSettings", IconSettings], ["IconBell", IconBell], ["IconSearch", IconSearch],
-  ["IconPlus", IconPlus], ["IconCheck", IconCheck], ["IconX", IconX],
-  ["IconChevronRight", IconChevronRight], ["IconChevronDown", IconChevronDown],
-  ["IconCalendar", IconCalendar], ["IconFileText", IconFileText], ["IconMail", IconMail],
-  ["IconMapPin", IconMapPin], ["IconClock", IconClock], ["IconShieldCheck", IconShieldCheck],
-  ["IconId", IconId], ["IconBuilding", IconBuilding], ["IconSend", IconSend],
-  ["IconDownload", IconDownload], ["IconEdit", IconEdit], ["IconTrash", IconTrash],
-  ["IconEye", IconEye], ["IconLogout", IconLogout],
-];
+export const cell = { border: "1px solid #e3e5e8", borderRadius: 10, padding: 12, background: "#fff", textAlign: "center" };
+export const grid = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(132px, 1fr))", gap: 10 };
+export const cap = { fontSize: 11, marginTop: 8, color: "#5b6168" };
+export const Group = ({ items }) => (
+  <div style={grid}>
+    {items.map(([name, Icon]) => (
+      <div key={name} style={cell}>
+        <Icon size={24} stroke={1.8} />
+        <div style={cap}>{name}</div>
+      </div>
+    ))}
+  </div>
+);
 
-<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 10 }}>
-  {icons.map(([name, Icon]) => (
-    <div key={name} style={{ border: "1px solid #e3e5e8", borderRadius: 10, padding: 12, background: "#fff", textAlign: "center" }}>
-      <Icon size={24} stroke={1.8} />
-      <div style={{ fontSize: 11, marginTop: 8, color: "#5b6168" }}>{name}</div>
-    </div>
-  ))}
+## Navigation and layout
+
+<Group items={[
+  ["IconHome", T.IconHome], ["IconLayoutDashboard", T.IconLayoutDashboard],
+  ["IconMenu2", T.IconMenu2], ["IconChevronRight", T.IconChevronRight],
+  ["IconChevronDown", T.IconChevronDown], ["IconChevronLeft", T.IconChevronLeft],
+  ["IconArrowLeft", T.IconArrowLeft], ["IconArrowRight", T.IconArrowRight],
+  ["IconExternalLink", T.IconExternalLink], ["IconDots", T.IconDots],
+  ["IconDotsVertical", T.IconDotsVertical], ["IconList", T.IconList],
+  ["IconLayoutGrid", T.IconLayoutGrid], ["IconFilter", T.IconFilter],
+  ["IconArrowsSort", T.IconArrowsSort], ["IconSearch", T.IconSearch],
+]} />
+
+## People and organisation
+
+<Group items={[
+  ["IconUser", T.IconUser], ["IconUsers", T.IconUsers], ["IconUserPlus", T.IconUserPlus],
+  ["IconUserCheck", T.IconUserCheck], ["IconId", T.IconId], ["IconBuilding", T.IconBuilding],
+  ["IconBuildingCommunity", T.IconBuildingCommunity], ["IconMapPin", T.IconMapPin],
+  ["IconWorld", T.IconWorld], ["IconSchool", T.IconSchool],
+  ["IconBriefcase", T.IconBriefcase], ["IconHierarchy", T.IconHierarchy],
+]} />
+
+## Actions
+
+<Group items={[
+  ["IconPlus", T.IconPlus], ["IconEdit", T.IconEdit], ["IconTrash", T.IconTrash],
+  ["IconSend", T.IconSend], ["IconDownload", T.IconDownload], ["IconUpload", T.IconUpload],
+  ["IconCopy", T.IconCopy], ["IconShare", T.IconShare], ["IconPrinter", T.IconPrinter],
+  ["IconRefresh", T.IconRefresh], ["IconDeviceFloppy", T.IconDeviceFloppy],
+  ["IconLogout", T.IconLogout], ["IconLogin", T.IconLogin], ["IconEye", T.IconEye],
+  ["IconEyeOff", T.IconEyeOff], ["IconLink", T.IconLink],
+]} />
+
+## Status and feedback
+
+<Group items={[
+  ["IconCheck", T.IconCheck], ["IconChecks", T.IconChecks], ["IconX", T.IconX],
+  ["IconClock", T.IconClock], ["IconLoader2", T.IconLoader2], ["IconInfoCircle", T.IconInfoCircle],
+  ["IconAlertTriangle", T.IconAlertTriangle], ["IconAlertCircle", T.IconAlertCircle],
+  ["IconCircleCheck", T.IconCircleCheck], ["IconShieldCheck", T.IconShieldCheck],
+  ["IconBell", T.IconBell], ["IconBellRinging", T.IconBellRinging],
+  ["IconFlag", T.IconFlag], ["IconStar", T.IconStar], ["IconHeart", T.IconHeart],
+]} />
+
+## Files, mail, and calendar
+
+<Group items={[
+  ["IconFileText", T.IconFileText], ["IconFileUpload", T.IconFileUpload],
+  ["IconFileDownload", T.IconFileDownload], ["IconFiles", T.IconFiles],
+  ["IconPhoto", T.IconPhoto], ["IconPaperclip", T.IconPaperclip],
+  ["IconMail", T.IconMail], ["IconMailOpened", T.IconMailOpened],
+  ["IconMessage", T.IconMessage], ["IconBrandWhatsapp", T.IconBrandWhatsapp],
+  ["IconCalendar", T.IconCalendar], ["IconCalendarEvent", T.IconCalendarEvent],
+  ["IconPhone", T.IconPhone], ["IconSettings", T.IconSettings],
+  ["IconLock", T.IconLock], ["IconKey", T.IconKey],
+]} />
+
+## Usage samples
+
+### In a button, icon supports the label
+
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+  <Button><T.IconPlus size={16} /> Tambah anggota</Button>
+  <Button variant="outline"><T.IconSend size={16} /> Kirim undangan</Button>
+  <Button variant="secondary"><T.IconDownload size={16} /> Unduh kartu</Button>
+  <Button disabled><T.IconLoader2 size={16} className="animate-spin" /> Menyimpan...</Button>
+</div>
+
+### In a badge, icon carries the status
+
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 4 }}>
+  <Badge><T.IconCircleCheck size={12} /> Terverifikasi</Badge>
+  <Badge variant="secondary"><T.IconClock size={12} /> Menunggu review</Badge>
+  <Badge variant="outline"><T.IconMapPin size={12} /> Okayama</Badge>
+</div>
+
+### Icon only action, familiar meaning plus an accessible name
+
+<div style={{ display: "flex", gap: 8 }}>
+  <Button size="icon" variant="outline" aria-label="Edit"><T.IconEdit size={18} /></Button>
+  <Button size="icon" variant="outline" aria-label="Download"><T.IconDownload size={18} /></Button>
+  <Button size="icon" variant="ghost" aria-label="More actions"><T.IconDotsVertical size={18} /></Button>
+</div>
+
+### Navigation item
+
+<div style={{ maxWidth: 280, border: "1px solid #e3e5e8", borderRadius: 10, overflow: "hidden" }}>
+  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", background: "#c8102e", color: "#fff" }}>
+    <T.IconHome size={20} /> <span>Beranda</span>
+  </div>
+  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px" }}>
+    <T.IconUsers size={20} /> <span>Anggota</span>
+  </div>
+  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px" }}>
+    <T.IconSettings size={20} /> <span>Pengaturan</span>
+  </div>
+</div>
+
+### One icon, four sizes
+
+<div style={{ display: "flex", alignItems: "flex-end", gap: 24 }}>
+  <span style={{ textAlign: "center" }}><T.IconShieldCheck size={16} /><div style={cap}>16</div></span>
+  <span style={{ textAlign: "center" }}><T.IconShieldCheck size={20} /><div style={cap}>20</div></span>
+  <span style={{ textAlign: "center" }}><T.IconShieldCheck size={24} /><div style={cap}>24</div></span>
+  <span style={{ textAlign: "center" }}><T.IconShieldCheck size={32} /><div style={cap}>32</div></span>
 </div>
 
 ## Usage rules
 
-- Size: 16px inside buttons and badges, 20px in lists, 24px as a standalone
-  action. Keep one size step per surface.
+- Size: 16px inside buttons and badges, 20px in lists and navigation,
+  24px as a standalone action. Keep one size step per surface.
 - Stroke: 1.8 by default, matching the Tabler outline style.
 - Color: inherit the text color (`currentColor`). Never hard code an icon
   color outside a token.
