@@ -1,0 +1,31 @@
+# ppij-design-system
+
+The public branding and design system for PPIJ (Persatuan Pelajar Indonesia di Jepang).
+This repo is the single source of truth for the PPIJ brand, design tokens, and
+presentation components. Public, member portal, admin, Pemira, Keycloak, and email
+surfaces consume this repo. They do not copy it.
+
+This repo holds brand and presentation only. It holds no application data logic,
+no API clients, and no secrets. It is a public repository so any agent or project
+can download it without credentials.
+
+## Layout
+
+- `brand/`: logo assets, palette, typography, voice, and usage rules
+- `tokens/`: framework free design tokens (`tokens.json` plus CSS variables).
+  These values feed React and Astro, Keycloak CSS, and email HTML.
+- `packages/ui/`: React presentation components on shadcn/ui and Tailwind CSS v4,
+  each with a Storybook story beside it
+- Storybook: the human view of the whole system, grouped Public, Portal, Admin
+
+## Consume, never copy
+
+Applications pin a released version of `@ppij/tokens` and `@ppij/ui`.
+Upgrading is a version bump plus a visual check. Copying a component or a token
+value into an application is prohibited.
+
+## Work here
+
+Specs live in `openspec/specs/`. Work runs through OpenSpec changes in
+`openspec/changes/`. Verify with `scripts/gate.sh`. The gate must be green
+before a merge or a release.

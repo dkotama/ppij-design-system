@@ -1,0 +1,15 @@
+schema: spec-driven
+context: |
+  ppij-design-system is the public branding and design system for PPIJ.
+  Stack: Astro friendly React 19 components, Tailwind CSS v4, shadcn/ui on
+  Radix, Tabler icons only, Storybook (@storybook/react-vite).
+  Boundary: brand, tokens, and presentation components only. No application
+  data logic, no API clients, no secrets. This is a public repository.
+  Consumers (ppij-identity-sso public site, portal, admin, Pemira, Keycloak,
+  email) pin a released package version and never copy components or tokens.
+  Brand facts: PPIJ red #C8102E, Plus Jakarta Sans plus Noto Sans JP.
+rules:
+  proposal:
+    - Specs use EARS style SHALL statements with WHEN and THEN scenarios.
+  tasks:
+    - Each task group lands its own tests or stories as its proof.
