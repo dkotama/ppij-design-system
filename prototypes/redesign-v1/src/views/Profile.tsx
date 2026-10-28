@@ -1,122 +1,127 @@
 import * as React from "react";
-import {
-  AdminDrawer, Avatar, AvatarFallback, Badge, Button, Card, FileUpload, Input, Label,
-  Tabs, TabsContent, TabsList, TabsTrigger, Timeline,
-} from "ppij-design-system";
+import { IconHistory, IconHome, IconIdBadge2 } from "@tabler/icons-react";
+import { Button, Card, Input, Label, PortalShell, Spinner, TagInput, Textarea } from "ppij-design-system";
+import logoUrl from "../../../../brand/ppij-logo.png";
 
-function Row({ label, value }: { label: string; value: string }) {
+function SaveButton({ saved, setSaved }: { saved: boolean; setSaved: (v: boolean) => void }) {
+  const [saving, setSaving] = React.useState(false);
   return (
-    <div className="grid gap-0.5 border-b py-3 last:border-0 sm:grid-cols-[180px_1fr] sm:gap-4">
-      <span className="text-sm text-muted-foreground">{label}</span>
-      <span className="text-sm font-medium text-brand-ink">{value}</span>
-    </div>
-  );
-}
-
-function Island({ title, onEdit, children }: { title: string; onEdit?: () => void; children: React.ReactNode }) {
-  return (
-    <Card className="p-5">
-      <div className="mb-2 flex items-center justify-between">
-        <h2 className="font-semibold text-brand-ink">{title}</h2>
-        {onEdit && <Button variant="ghost" size="sm" onClick={onEdit}>Ubah</Button>}
-      </div>
-      {children}
-    </Card>
-  );
-}
-
-export function ProfileView() {
-  const [drawer, setDrawer] = React.useState<null | "identitas" | "kontak">(null);
-  return (
-    <div className="mx-auto grid w-full max-w-5xl gap-6 px-4 py-8">
-      <Card className="flex flex-wrap items-center gap-4 p-5">
-        <Avatar className="size-16">
-          <AvatarFallback className="text-lg">DK</AvatarFallback>
-        </Avatar>
-        <div className="grid gap-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-xl font-bold text-brand-ink">I Nyoman Darma Kotama</h1>
-            <Badge variant="success">Aktif</Badge>
-          </div>
-          <p className="text-sm text-muted-foreground">PPIJ-2026-000123 · Komsat Okayama · Okayama University</p>
-        </div>
-        <Button variant="outline" className="ml-auto">Lihat kartu anggota</Button>
-      </Card>
-
-      <Tabs defaultValue="identitas">
-        <TabsList>
-          <TabsTrigger value="identitas">Identitas</TabsTrigger>
-          <TabsTrigger value="kontak">Kontak</TabsTrigger>
-          <TabsTrigger value="dokumen">Dokumen</TabsTrigger>
-          <TabsTrigger value="riwayat">Riwayat</TabsTrigger>
-        </TabsList>
-        <TabsContent value="identitas" className="grid gap-6 pt-4">
-          <Island title="Data diri" onEdit={() => setDrawer("identitas")}>
-            <Row label="Nama lengkap" value="I Nyoman Darma Kotama" />
-            <Row label="Tanggal lahir" value="2 September 1992" />
-            <Row label="Domisili" value="Okayama City, Kita-ku, Okayama 700-0001" />
-            <Row label="Komsat" value="Okayama" />
-          </Island>
-          <Island title="Pendidikan" onEdit={() => setDrawer("identitas")}>
-            <Row label="Universitas" value="Okayama University" />
-            <Row label="Program studi" value="Computer Science" />
-            <Row label="Jenjang" value="S2, sedang menempuh" />
-            <Row label="Pendanaan" value="Beasiswa: JASSO" />
-          </Island>
-        </TabsContent>
-        <TabsContent value="kontak" className="grid gap-6 pt-4">
-          <Island title="Kontak" onEdit={() => setDrawer("kontak")}>
-            <Row label="Email" value="darma.kotama@gmail.com" />
-            <Row label="WhatsApp" value="+81 90-0000-0000" />
-            <Row label="Kontak darurat" value="Keluarga di Indonesia, +62 812-0000-0000" />
-          </Island>
-        </TabsContent>
-        <TabsContent value="dokumen" className="grid gap-6 pt-4">
-          <Island title="Dokumen">
-            <div className="grid gap-4 pt-2">
-              <FileUpload label="Paspor" status="done" fileName="paspor-kotama.pdf" onPick={() => {}} onRemove={() => {}} />
-              <FileUpload label="Kartu residensi (zairyu)" status="done" fileName="zairyu-depan.jpg" onPick={() => {}} onRemove={() => {}} />
-              <FileUpload label="Transkrip terakhir" hint="PDF, maks 5 MB." status="empty" onPick={() => {}} />
-            </div>
-          </Island>
-        </TabsContent>
-        <TabsContent value="riwayat" className="grid gap-6 pt-4">
-          <Island title="Riwayat keanggotaan">
-            <div className="pt-2">
-              <Timeline items={[
-                { title: "Pendaftaran terkirim", time: "1 Okt 2026", state: "complete" },
-                { title: "Verifikasi komsat selesai", time: "3 Okt 2026", state: "complete" },
-                { title: "Verifikasi pusat selesai", time: "6 Okt 2026", state: "complete" },
-                { title: "Kartu anggota diterbitkan", description: "Berlaku sampai Oktober 2027.", time: "6 Okt 2026", state: "complete" },
-              ]} />
-            </div>
-          </Island>
-        </TabsContent>
-      </Tabs>
-
-      <AdminDrawer
-        open={drawer !== null}
-        onOpenChange={(open) => { if (!open) setDrawer(null); }}
-        title={drawer === "kontak" ? "Ubah kontak" : "Ubah data"}
-        description="Perubahan tersimpan setelah tombol Simpan ditekan."
-        locale="id"
-        footer={<Button onClick={() => setDrawer(null)}>Simpan perubahan</Button>}
+    <div className="grid gap-2">
+      <Button
+        type="submit"
+        disabled={saving}
+        aria-busy={saving}
+        className="min-h-11 w-fit gap-2 px-5"
+        onClick={(event) => {
+          event.preventDefault();
+          setSaving(true);
+          setSaved(false);
+          window.setTimeout(() => { setSaving(false); setSaved(true); }, 700);
+        }}
       >
-        <div className="grid gap-4">
-          {drawer === "kontak" ? (
-            <>
-              <div className="grid gap-1.5"><Label>Email</Label><Input defaultValue="darma.kotama@gmail.com" /></div>
-              <div className="grid gap-1.5"><Label>WhatsApp</Label><Input defaultValue="+81 90-0000-0000" /></div>
-            </>
-          ) : (
-            <>
-              <div className="grid gap-1.5"><Label>Nama lengkap</Label><Input defaultValue="I Nyoman Darma Kotama" /></div>
-              <div className="grid gap-1.5"><Label>Kota domisili</Label><Input defaultValue="Okayama City, Kita-ku" /></div>
-              <div className="grid gap-1.5"><Label>Universitas</Label><Input defaultValue="Okayama University" /></div>
-            </>
-          )}
-        </div>
-      </AdminDrawer>
+        {saving ? (<><Spinner size="sm" decorative /><span>Menyimpan…</span></>) : "Simpan perubahan"}
+      </Button>
+      {saved ? <p role="status" className="text-sm text-success">Perubahan tersimpan.</p> : null}
     </div>
+  );
+}
+
+function ProfileContent() {
+  const [minat, setMinat] = React.useState(["Fotografi", "Riset kecerdasan buatan", "Bahasa Jepang"]);
+  const [minatSaved, setMinatSaved] = React.useState(false);
+  const [kontakSaved, setKontakSaved] = React.useState(false);
+  const history = [
+    { status: "Aktif", reason: "Kartu anggota diterbitkan", date: "6 Okt 2026" },
+    { status: "Belum lengkap", reason: "Pendaftaran diterima", date: "1 Okt 2026" },
+  ];
+  return (
+    <div className="flex flex-col gap-5">
+      <header>
+        <h1 className="text-2xl font-bold text-brand-ink">Profil</h1>
+        <p className="mt-1 text-sm text-brand-muted">Data keanggotaan dan riwayat status Anda.</p>
+      </header>
+      <Card className="gap-4 rounded-xl border border-brand-border bg-card p-5">
+        <div className="flex items-center gap-3">
+          <IconIdBadge2 className="size-6 text-brand-red" aria-hidden="true" />
+          <div>
+            <h2 className="font-bold text-brand-ink">I Nyoman Darma Kotama</h2>
+            <p className="text-sm text-brand-muted">darma.kotama@gmail.com</p>
+          </div>
+        </div>
+        <dl className="grid gap-3 border-t border-brand-border pt-4 sm:grid-cols-2">
+          <div><dt className="text-xs text-brand-muted">Status keanggotaan</dt><dd className="font-semibold text-brand-ink">Aktif</dd></div>
+          <div><dt className="text-xs text-brand-muted">Nomor anggota</dt><dd className="font-mono font-semibold text-brand-ink">PPIJ-2026-000123</dd></div>
+          <div><dt className="text-xs text-brand-muted">Komsat</dt><dd className="font-semibold text-brand-ink">Okayama</dd></div>
+          <div><dt className="text-xs text-brand-muted">Korda</dt><dd className="font-semibold text-brand-ink">Kansai</dd></div>
+          <div><dt className="text-xs text-brand-muted">Berlaku sampai</dt><dd className="font-semibold text-brand-ink">6 Oktober 2027</dd></div>
+        </dl>
+      </Card>
+      <section aria-labelledby="profile-history-heading">
+        <h2 id="profile-history-heading" className="mb-3 flex items-center gap-2 text-lg font-bold text-brand-ink"><IconHistory className="size-5" aria-hidden="true" />Riwayat keanggotaan</h2>
+        <ol className="flex flex-col gap-3">
+          {history.map((change) => (
+            <li key={change.date + change.status}>
+              <Card className="flex flex-wrap items-start justify-between gap-2 rounded-xl border border-brand-border bg-card p-4">
+                <div><p className="font-semibold text-brand-ink">{change.status}</p><p className="text-sm text-brand-muted">{change.reason}</p></div>
+                <time className="text-sm text-brand-muted">{change.date}</time>
+              </Card>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <section aria-labelledby="profile-minat-heading" className="flex flex-col gap-3">
+        <h2 id="profile-minat-heading" className="text-lg font-bold text-brand-ink">Minat</h2>
+        <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+          <Label>Tambah atau hapus minat</Label>
+          <TagInput values={minat} onChange={(v) => { setMinat(v); setMinatSaved(false); }} suggestions={["Musik", "Olahraga", "Kuliner", "Teknologi"]} placeholder="Cari atau ketik minat" />
+          <SaveButton saved={minatSaved} setSaved={setMinatSaved} />
+        </form>
+      </section>
+      <section aria-labelledby="profile-contact-heading">
+        <h2 id="profile-contact-heading" className="mb-3 text-lg font-bold text-brand-ink">Kontak dan data tempat tinggal</h2>
+        <Card className="rounded-xl border border-brand-border bg-card p-5">
+          <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+            <div className="grid gap-1.5"><Label htmlFor="pf-nickname">Nama panggilan</Label><Input id="pf-nickname" defaultValue="Darma" autoComplete="nickname" /></div>
+            <div className="grid gap-1.5"><Label htmlFor="pf-phone">Telepon / WhatsApp</Label><Input id="pf-phone" type="tel" defaultValue="+81 90-1234-5678" autoComplete="tel" /></div>
+            <div className="grid gap-1.5"><Label htmlFor="pf-line">LINE ID</Label><Input id="pf-line" defaultValue="darmakotama" /></div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-1.5"><Label htmlFor="pf-pref">Kode prefektur</Label><Input id="pf-pref" inputMode="numeric" defaultValue="33" /></div>
+              <div className="grid gap-1.5"><Label htmlFor="pf-city">Kode kota</Label><Input id="pf-city" inputMode="numeric" defaultValue="33100" /></div>
+            </div>
+            <div className="grid gap-1.5"><Label htmlFor="pf-expiry">Masa berlaku status tinggal</Label><Input id="pf-expiry" type="date" defaultValue="2027-03-31" /></div>
+            <fieldset className="grid gap-4 border-t border-brand-border pt-4">
+              <legend className="px-1 text-sm font-bold text-brand-ink">Kontak darurat</legend>
+              <div className="grid gap-1.5"><Label htmlFor="pf-em-name">Nama</Label><Input id="pf-em-name" defaultValue="Ni Made Rai" /></div>
+              <div className="grid gap-1.5"><Label htmlFor="pf-em-rel">Hubungan</Label><Input id="pf-em-rel" defaultValue="Ibu" /></div>
+              <div className="grid gap-1.5"><Label htmlFor="pf-em-phone">Telepon</Label><Input id="pf-em-phone" type="tel" defaultValue="+62 812-3456-7890" /></div>
+              <div className="grid gap-1.5"><Label htmlFor="pf-em-addr">Alamat</Label><Textarea id="pf-em-addr" rows={3} defaultValue="Denpasar, Bali" /></div>
+            </fieldset>
+            <SaveButton saved={kontakSaved} setSaved={setKontakSaved} />
+          </form>
+        </Card>
+      </section>
+    </div>
+  );
+}
+
+export function ProfileView({ onNavigate }: { onNavigate: (view: "portal" | "wizard" | "profile") => void }) {
+  const go = (view: "portal" | "wizard" | "profile") => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onNavigate(view);
+  };
+  return (
+    <PortalShell
+      logoSrc={logoUrl}
+      navItems={[
+        { label: "Beranda", href: "#", icon: <IconHome className="size-5" stroke={1.75} />, onClick: go("portal") },
+        { label: "Profil", href: "#", icon: <IconIdBadge2 className="size-5" stroke={1.75} />, current: true },
+      ]}
+      languages={[{ label: "Bahasa Indonesia", current: true }, { label: "English" }]}
+      accountItems={[{ label: "Akun", href: "#" }, { label: "Kebijakan Privasi", href: "#" }, { label: "Syarat Layanan", href: "#" }]}
+      helpText="Butuh bantuan? Hubungi pengurus komsatmu atau sekretariat PPI Jepang."
+      legalItems={[{ label: "Kebijakan Privasi", href: "#" }, { label: "Syarat Layanan", href: "#" }]}
+    >
+      <ProfileContent />
+    </PortalShell>
   );
 }

@@ -31,7 +31,7 @@ export function App() {
       </div>
       {view === "portal" && <PortalView onNavigate={setView} />}
       {view === "wizard" && <WizardView />}
-      {view === "profile" && <ProfileView />}
+      {view === "profile" && <ProfileView onNavigate={setView} />}
     </div>
   );
 }
