@@ -44,6 +44,10 @@ export type AdminDrawerProps = {
   title: string
   description?: string
   locale: Locale
+  /** Overrides the built-in close label for this locale. */
+  closeLabel?: string
+  /** Overrides the built-in back label for this locale. */
+  backLabel?: string
   /** Two-step body: 1 is the first step (default), 2 is the confirmation step. */
   step?: 1 | 2
   /** Shown as the "Kembali" button when step is 2. Going back never submits. */
@@ -68,6 +72,8 @@ export function AdminDrawer({
   title,
   description,
   locale,
+  closeLabel,
+  backLabel,
   step = 1,
   onBack,
   children,
@@ -104,7 +110,7 @@ export function AdminDrawer({
               type="button"
               variant="ghost"
               size="icon"
-              aria-label={labels[locale].close}
+              aria-label={(closeLabel ?? labels[locale].close)}
               className="shrink-0"
             >
               <IconX className="size-4" />
@@ -124,7 +130,7 @@ export function AdminDrawer({
           >
             {showBack ? (
               <Button type="button" variant="outline" onClick={onBack} className="mr-auto">
-                {labels[locale].back}
+                {(backLabel ?? labels[locale].back)}
               </Button>
             ) : null}
             {footer}

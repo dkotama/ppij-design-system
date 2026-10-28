@@ -56,16 +56,16 @@ Proof: seven more components with stories (Sidebar and drawer family under Admin
 
 ## Batch 8 — Empty component
 
-- [ ] Add the missing Empty component (icon slot, title, description, optional action) with a story
+- [x] Add the missing Empty component (icon slot, title, description, optional action) with a story
 
 Proof: Empty renders in stories showing default and with-action states.
 
 ## Batch 9 — Promoted patterns
 
-- [ ] Promote PageHeader (Admin) with stories (Impeccable `shape` first)
-- [ ] Promote the DataTable presentation shell (Admin) with stories including empty and long text
-- [ ] Promote the wide Drawer pattern (Admin): admin-drawer generalized, locale strings as props
-- [ ] Promote FormPanel (Portal) with stories
+- [x] Promote PageHeader (Admin) with stories (Impeccable `shape` first)
+- [x] Promote the DataTable presentation shell (Admin) with stories including empty and long text
+- [x] Promote the wide Drawer pattern (Admin): admin-drawer generalized, locale strings as props
+- [x] Promote FormPanel (Portal) with stories
 
 Proof: four pattern components with stories in their surface groups; no import from the source app remains.
 
