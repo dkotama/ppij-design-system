@@ -38,19 +38,19 @@ Proof: Storybook builds in the gate; the three groups and two viewport presets e
 
 ## Batch 5 — Portal atoms, wave 1 (forms)
 
-- [ ] Extract button, input, label, select, badge, avatar, and separator from ppij-identity-sso ui/ into packages/ui with stories and their applicable states
+- [x] Extract button, input, label, select, badge, avatar, and separator from ppij-identity-sso ui/ into packages/ui with stories and their applicable states
 
 Proof: seven components, each with a default story, render in the Portal group; gate story check passes.
 
 ## Batch 6 — Portal atoms, wave 2 (feedback and containers)
 
-- [ ] Extract card, alert, skeleton, spinner, saving-indicator, tooltip, and scroll-area with stories and their applicable states
+- [x] Extract card, alert, skeleton, spinner, saving-indicator, tooltip, and scroll-area with stories and their applicable states
 
 Proof: seven more components with stories in the Portal group; gate story check passes.
 
 ## Batch 7 — Overlays, navigation, and data atoms, wave 3
 
-- [ ] Extract drawer, sheet, dropdown-menu, tabs, table, sidebar, and the admin-drawer basis with stories and their applicable states
+- [x] Extract drawer, sheet, dropdown-menu, tabs, table, sidebar, and the admin-drawer basis with stories and their applicable states
 
 Proof: seven more components with stories (Sidebar and drawer family under Admin); gate story check passes.
 
