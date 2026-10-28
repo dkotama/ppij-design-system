@@ -72,3 +72,8 @@ export { Switch } from "./components/switch";
 export { Textarea } from "./components/textarea";
 export { Stepper, type StepperProps, type StepperStep } from "./components/stepper";
 export { FileUpload, type FileUploadProps, type FileUploadStatus } from "./components/file-upload";
+export { Progress } from "./components/progress";
+export { Timeline, type TimelineProps, type TimelineItem } from "./components/timeline";
+export { AccountMenu, type AccountMenuProps, type AccountMenuItem } from "./components/account-menu";
+export { TypeAhead, type TypeAheadProps } from "./components/type-ahead";
+export { TagInput, type TagInputProps } from "./components/tag-input";
