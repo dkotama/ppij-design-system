@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Typography" />
+
+# Typography
+
+Font stack: **Plus Jakarta Sans**, **Noto Sans JP**, system-ui, sans-serif.
+One stack serves the public site, the portal, and admin.
+
+<div style={{ border: "1px solid #e3e5e8", borderRadius: 10, padding: 16, background: "#fff" }}>
+  <div style={{ fontSize: 32, fontWeight: 700, lineHeight: 1.2 }}>Pendaftaran Anggota PPIJ</div>
+  <div style={{ fontSize: 20, fontWeight: 600, marginTop: 12 }}>Verifikasi berkas oleh admin wilayah</div>
+  <p style={{ fontSize: 16, marginTop: 12 }}>
+    Teks isi memakai ukuran dasar dengan tinggi baris 1.6 agar nyaman dibaca di
+    telepon dan desktop. 管理画面も同じ書体とスケールを使います。
+  </p>
+  <div style={{ fontSize: 13, color: "#5b6168" }}>Teks pendukung memakai warna muted dari token.</div>
+</div>
+
+Rules: never introduce a second font family; never set type in a component
+with a raw pixel value when a scale step exists; long words and long Japanese
+or Indonesian strings must wrap without breaking the layout.

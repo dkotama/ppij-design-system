@@ -10,29 +10,29 @@ runs `shape` before promoting patterns.
 
 ## Batch 1 — Tooling baseline
 
-- [ ] Replace the Makefile TODO targets with real build, lint, and test commands (tokens generate, tsc, eslint + prettier, Vitest, Storybook build) and a real dev target
-- [ ] Run scripts/gate.sh green on a clean tree with the new stages
+- [x] Replace the Makefile TODO targets with real build, lint, and test commands (tokens generate, tsc, eslint + prettier, Vitest, Storybook build) and a real dev target
+- [x] Run scripts/gate.sh green on a clean tree with the new stages
 
 Proof: `scripts/gate.sh` prints ALL PASS on a clean tree.
 
 ## Batch 2 — Tokens
 
-- [ ] Extract tokens from ppij-identity-sso `web/src/styles/global.css` into `tokens/tokens.json` with primitive and semantic layers (Impeccable `document`, scan mode)
-- [ ] Generate `tokens/tokens.css` from tokens.json, keeping today's variable names, and add the parity check to the gate
+- [x] Extract tokens from ppij-identity-sso `web/src/styles/global.css` into `tokens/tokens.json` with primitive and semantic layers (Impeccable `document`, scan mode)
+- [x] Generate `tokens/tokens.css` from tokens.json, keeping today's variable names, and add the parity check to the gate
 
 Proof: parity check in gate; both files render the PPIJ palette in a scratch HTML page.
 
 ## Batch 3 — Brand seed
 
-- [ ] Seed brand/ with the logo (from ppij-identity-sso `web/public/ppij-logo.png`), palette, typography, and usage rules (Tabler icons only, language-switch rule, admin-equals-portal typography)
+- [x] Seed brand/ with the logo (from ppij-identity-sso `web/public/ppij-logo.png`), palette, typography, and usage rules (Tabler icons only, language-switch rule, admin-equals-portal typography)
 
 Proof: brand/ assets and rules committed; Colors and Typography facts match tokens.json values.
 
 ## Batch 4 — Storybook shell
 
-- [ ] Set up @storybook/react-vite with Public, Portal, Admin groups
-- [ ] Add phone (390x844) and 1440px desktop viewport presets
-- [ ] Stub the Docs pages: Introduction, Brand, Colors, Typography, Guidelines
+- [x] Set up @storybook/react-vite with Public, Portal, Admin groups
+- [x] Add phone (390x844) and 1440px desktop viewport presets
+- [x] Stub the Docs pages: Introduction, Brand, Colors, Typography, Guidelines
 
 Proof: Storybook builds in the gate; the three groups and two viewport presets exist; preview imports tokens.css.
 

@@ -1,0 +1,33 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guidelines" />
+
+# Guidelines
+
+Carried from the PPIJ guideline book (ppij-identity-sso, design/1.0.6) and
+adapted to the library. The full batch by batch carry lands in Batch 11 of the
+foundation change; the binding rules already live in the spec.
+
+## Rules that never bend
+
+1. **Tokens only.** Components use token names, never raw hex values or one
+   off pixel literals.
+2. **Tabler icons only.** No text glyphs as icons, no second icon family.
+3. **No story, no component.** Every component renders in a story with its
+   applicable states: default, loading, empty, error, disabled, long text.
+4. **Presentation only.** No data logic, no API clients, no business logic,
+   no secrets in this repo. Application strings arrive as props.
+5. **Consume, never copy.** Applications import from the pinned package.
+6. **Language switch** is a quiet text action or a labelled menu, never
+   isolated boxed EN or ID codes.
+7. **States are designed, not improvised.** Loading shows a layout matched
+   skeleton, errors offer a retry, empty states say what is missing and what
+   to do next.
+
+## Surfaces
+
+- **Public**: brand first, generous spacing, one clear action per section
+- **Portal**: quiet and task focused, the member finishes a flow without
+  decoration competing for attention
+- **Admin**: dense but calm, one table pattern, one drawer pattern, badges
+  carry live counts only and show nothing at zero

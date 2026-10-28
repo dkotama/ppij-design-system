@@ -1,0 +1,23 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { Badge } from "./badge";
+
+const meta: Meta<typeof Badge> = {
+  title: "Portal/Badge",
+  component: Badge,
+  args: { children: "Terverifikasi" },
+};
+export default meta;
+type Story = StoryObj<typeof Badge>;
+
+export const Default: Story = {};
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="outline">Outline</Badge>
+      <Badge variant="destructive">Ditolak</Badge>
+    </div>
+  ),
+};
+export const LongText: Story = { args: { children: "Menunggu verifikasi berkas tambahan" } };

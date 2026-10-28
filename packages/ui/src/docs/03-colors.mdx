@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/blocks";
+import tokens from "../../../../tokens/tokens.json";
+
+<Meta title="Colors" />
+
+# Colors
+
+Values come straight from `tokens/tokens.json`, the canonical token source.
+The CSS variables in `tokens.css` are generated from the same file.
+
+## Brand primitives
+
+<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
+  {Object.entries(tokens.primitive)
+    .filter(([name, value]) => typeof value === "string" && value.startsWith("#"))
+    .map(([name, value]) => (
+      <div key={name} style={{ border: "1px solid #e3e5e8", borderRadius: 10, overflow: "hidden", background: "#fff" }}>
+        <div style={{ background: value, height: 56 }} />
+        <div style={{ padding: "8px 10px", fontSize: 13 }}>
+          <strong>{name}</strong>
+          <br />
+          {value}
+        </div>
+      </div>
+    ))}
+</div>
+
+## Semantic layer
+
+Components use the semantic names (background, primary, card, muted, border,
+ring, and the sidebar family), never raw brand values. The semantic layer maps
+each name to a primitive, so a palette change touches one file.

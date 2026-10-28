@@ -1,0 +1,30 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# PPIJ Design System
+
+The single source of truth for PPIJ branding and presentation components.
+Public site, member portal, admin, Pemira, Keycloak, and email all consume
+this system.
+
+## Install
+
+```sh
+npm install ppij-design-system
+```
+
+Until the first npm publish, install the same package from the public GitHub
+repo with `npm install github:ppij-dev/ppij-design-system`. Applications pin a
+version and never copy a component or a token value.
+
+## How this site is organised
+
+- **Docs pages** (this section): brand, colors, typography, and guidelines
+- **Portal**: shared presentation components with their stories
+- **Public** and **Admin**: surface specific compositions, added as they are
+  promoted into the library
+
+Every component ships with a story. No story, no component. Use the toolbar
+viewport presets to check the phone view (390 by 844) and the desktop view
+(1440 by 900).

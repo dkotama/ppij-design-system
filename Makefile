@@ -1,9 +1,11 @@
 .PHONY: build lint test dev
 build:
-	@echo "TODO: build command"
+	node scripts/generate-tokens.mjs
+	cd packages/ui && npm run build && npm run build-storybook
 lint:
-	@echo "TODO: lint command"
+	cd packages/ui && npx tsc -p tsconfig.json --noEmit
 test:
-	@echo "TODO: test command"
+	node scripts/check-stories.mjs
+	node --test scripts/check-tokens.test.mjs
 dev:
-	@echo "TODO: dev server command"
+	cd packages/ui && npm run storybook
