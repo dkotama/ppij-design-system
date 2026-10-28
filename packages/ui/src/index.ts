@@ -63,3 +63,4 @@ export {
   AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger,
 } from "./components/alert-dialog";
 export { Toaster } from "./components/sonner";
+export { SearchFilter, type SearchFilterProps, type ActiveFilter } from "./components/search-filter";
