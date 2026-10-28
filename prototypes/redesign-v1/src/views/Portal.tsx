@@ -42,7 +42,7 @@ export function PortalView({ onNavigate }: { onNavigate: (view: "wizard" | "prof
             <span aria-hidden className="text-sm font-semibold text-brand-red">&rsaquo;</span>
           </a>
           <div className="md:sticky md:top-[72px]">
-            <MemberCard name="I Nyoman Darma Kotama" memberId="PPIJ-2026-000123" komsat="Okayama" affiliation="Okayama University" validUntil="Okt 2027" statusLabel="Aktif" />
+            <MemberCardBlock name="I Nyoman Darma Kotama" memberId="PPIJ-2026-000123" komsat="Okayama" affiliation="Okayama University" validUntil="Okt 2027" statusLabel="Aktif" backNote="Tunjukkan kartu ini saat verifikasi kehadiran." themes={[{ id: "kansai", label: "Kansai", group: "Korda", base: "#c8102e", faceTheme: "red" }, { id: "ppij-ink", label: "PPIJ Tinta", group: "PPIJ", base: "#1c1f23", faceTheme: "ink" }, { id: "sakura", label: "Sakura", group: "Musim", base: "#d77a94", faceTheme: "red" }, { id: "mega-mendung", label: "Mega Mendung", group: "Nusantara", base: "#31517f", faceTheme: "ink" }]} />
           </div>
           <ServiceTiles
             groups={[
