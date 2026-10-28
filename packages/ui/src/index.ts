@@ -80,3 +80,4 @@ export { TagInput, type TagInputProps } from "./components/tag-input";
 export { PortalShell, type PortalShellProps, type PortalNavItem, type PortalLanguage } from "./components/portal-shell";
 export { StatusCard, type StatusCardProps, type StatusCardTone } from "./components/status-card";
 export { ServiceTiles, type ServiceTilesProps, type ServiceTile, type ServiceTileGroup } from "./components/service-tiles";
+export { MemberCardBlock, type MemberCardBlockProps, type CardThemeOption } from "./components/member-card-block";
