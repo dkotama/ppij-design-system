@@ -77,3 +77,6 @@ export { Timeline, type TimelineProps, type TimelineItem } from "./components/ti
 export { AccountMenu, type AccountMenuProps, type AccountMenuItem } from "./components/account-menu";
 export { TypeAhead, type TypeAheadProps } from "./components/type-ahead";
 export { TagInput, type TagInputProps } from "./components/tag-input";
+export { PortalShell, type PortalShellProps, type PortalNavItem, type PortalLanguage } from "./components/portal-shell";
+export { StatusCard, type StatusCardProps, type StatusCardTone } from "./components/status-card";
+export { ServiceTiles, type ServiceTilesProps, type ServiceTile, type ServiceTileGroup } from "./components/service-tiles";
