@@ -15,6 +15,8 @@ const preview: Preview = {
     viewport: {
       viewports: {
         phone: { name: "Phone", styles: { width: "390px", height: "844px" } },
+        tablet: { name: "Tablet portrait (iPad / Galaxy Tab)", styles: { width: "834px", height: "1112px" }, type: "tablet" },
+        tabletLandscape: { name: "Tablet landscape", styles: { width: "1112px", height: "834px" }, type: "tablet" },
         desktop: { name: "Desktop 1440", styles: { width: "1440px", height: "900px" } },
       },
     },

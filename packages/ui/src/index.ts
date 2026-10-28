@@ -50,3 +50,5 @@ export { FormPanel } from "./components/form-panel";
 export { MemberCard, MemberCardBack, type MemberCardProps, type MemberCardBackProps, type MemberCardTheme } from "./components/member-card";
 export { PageHeader, type PageHeaderProps } from "./components/page-header";
 export { DataTable, type DataTableProps } from "./components/data-table";
+export { TopBar, type TopBarProps, type TopBarLink } from "./components/top-bar";
+export { ViewToggle, type ViewToggleProps, type ViewToggleOption } from "./components/view-toggle";

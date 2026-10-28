@@ -15,8 +15,11 @@ export const Default: Story = {
         <CardDescription>Status pendaftaran anggota</CardDescription>
       </CardHeader>
       <CardContent>
-        <Badge>Terverifikasi</Badge>
-        <p>Data anggota tampil di sini. Kartu memakai token warna dan radius dari sistem desain.</p>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <Badge>Terverifikasi</Badge>
+          <span style={{ fontSize: 13, color: "#5b6168" }}>sejak 12 Okt 2026</span>
+        </div>
+        <p style={{ margin: "10px 0 0" }}>Data anggota tampil di sini. Kartu memakai token warna dan radius dari sistem desain.</p>
       </CardContent>
       <CardFooter>
         <Button>Lihat profil</Button>

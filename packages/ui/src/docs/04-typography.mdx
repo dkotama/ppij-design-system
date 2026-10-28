@@ -20,3 +20,47 @@ One stack serves the public site, the portal, and admin.
 Rules: never introduce a second font family; never set type in a component
 with a raw pixel value when a scale step exists; long words and long Japanese
 or Indonesian strings must wrap without breaking the layout.
+
+## Vertical rhythm and spacing
+
+Type breathes on a 4px base scale. Steps: **4, 8, 12, 16, 24, 32, 48**.
+
+- Body text: 16px, line height 1.6. Paragraphs are separated by **16px**, never by an empty line in markup.
+- Headings: line height 1.25. Space above a heading is **24px** (32px for a page title), space below is **8px**, so a heading visibly belongs to the text that follows it.
+- Supporting text under a heading or a label above a field: **6 to 8px**.
+- Inside a card: 16px between blocks, 24px on desktop. Inside a form: 6px label to field, 16px field to field.
+
+## Long text sample
+
+<div style={{ border: "1px solid #e3e5e8", borderRadius: 10, padding: 24, background: "#fff", maxWidth: "65ch" }}>
+  <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1.25 }}>Pendaftaran anggota baru PPI Jepang periode 2026</div>
+  <p style={{ marginTop: 16, lineHeight: 1.6 }}>
+    Persatuan Pelajar Indonesia di Jepang (PPIJ) membuka pendaftaran anggota baru untuk periode kepengurusan 2026.
+    Pendaftaran terbuka bagi seluruh pelajar Indonesia yang sedang menempuh pendidikan di Jepang, baik pada jenjang
+    bahasa, sarjana, magister, maupun doktor, termasuk peneliti dan peserta program pertukaran yang berdomisili
+    lebih dari enam bulan.
+  </p>
+  <p style={{ marginTop: 16, lineHeight: 1.6 }}>
+    Calon anggota mengisi formulir pendaftaran melalui portal anggota dan mengunggah berkas pendukung berupa kartu
+    mahasiswa atau surat keterangan aktif dari institusi pendidikan. Berkas diperiksa oleh admin komisariat (komsat)
+    sesuai wilayah domisili, dan hasil verifikasi diumumkan melalui portal paling lambat tujuh hari kerja setelah
+    berkas dinyatakan lengkap.
+  </p>
+  <div style={{ fontSize: 19, fontWeight: 600, lineHeight: 1.25, marginTop: 24, marginBottom: 8 }}>Tahapan verifikasi wilayah</div>
+  <p style={{ marginTop: 0, lineHeight: 1.6 }}>
+    Admin wilayah memeriksa kesesuaian nama, afiliasi, dan domisili. Apabila terdapat perbedaan antara data formulir
+    dan berkas, pendaftar menerima pemberitahuan untuk memperbaiki data sebelum batas waktu yang ditentukan. Perbaikan
+    yang tidak dilakukan sampai batas waktu membuat pendaftaran kembali ke antrean pemeriksaan berikutnya.
+  </p>
+  <ul style={{ marginTop: 12, lineHeight: 1.6, paddingLeft: 20 }}>
+    <li>Nama sesuai dokumen resmi, tanpa singkatan.</li>
+    <li>Afiliasi adalah institusi tempat belajar saat ini.</li>
+    <li>Komsat mengikuti domisili, bukan asal daerah di Indonesia.</li>
+  </ul>
+  <p style={{ marginTop: 16, lineHeight: 1.6 }}>
+    Setelah terverifikasi, anggota menerima kartu anggota digital yang memuat nomor anggota, komsat, dan masa berlaku
+    keanggotaan. Kartu tersebut menjadi bukti keanggotaan resmi dan digunakan untuk mengakses layanan serta kegiatan
+    PPIJ di seluruh Jepang. 会員の皆さまには、登録完了後にデジタル会員証が発行されます。
+  </p>
+</div>
+

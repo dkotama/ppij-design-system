@@ -31,3 +31,31 @@ foundation change; the binding rules already live in the spec.
   decoration competing for attention
 - **Admin**: dense but calm, one table pattern, one drawer pattern, badges
   carry live counts only and show nothing at zero
+
+## Badge: do and do not
+
+import { Badge } from "../components/badge";
+import { Button } from "../components/button";
+import { IconCheck, IconX } from "@tabler/icons-react";
+
+export const box = { border: "1px solid #e3e5e8", borderRadius: 10, padding: 14, background: "#fff" };
+export const tag = (ok) => ({ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 12, fontWeight: 700, color: ok ? "#15803d" : "#c8102e", marginBottom: 10 });
+
+<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 12 }}>
+  <div style={box}>
+    <div style={tag(true)}><IconCheck size={14} /> Do</div>
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <strong>Keanggotaan PPIJ</strong> <Badge>Terverifikasi</Badge>
+    </div>
+    <p style={{ fontSize: 13, color: "#5b6168", margin: "8px 0 0" }}>
+      A badge states a status and sits beside the thing it describes: a title, a table row, a name. One or two words, or a count.
+    </p>
+  </div>
+  <div style={box}>
+    <div style={tag(false)}><IconX size={14} /> Do not</div>
+    <Badge>Lihat profil anggota selengkapnya di sini</Badge>
+    <p style={{ fontSize: 13, color: "#5b6168", margin: "8px 0 0" }}>
+      Never use a badge as a button or a link, never put a sentence in it, and never let it float alone in a card with nothing beside it. Actions are Buttons.
+    </p>
+  </div>
+</div>
