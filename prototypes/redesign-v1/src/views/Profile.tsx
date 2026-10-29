@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IconEye, IconEyeOff, IconHistory, IconHome, IconIdBadge2, IconPencil } from "@tabler/icons-react";
-import { Badge, Button, Card, FileUpload, Input, Label, PageHeader, PortalShell, RadioGroup, RadioGroupItem, Spinner, TagInput, Textarea, TypeAhead } from "ppij-design-system";
+import { Badge, Button, Card, FileUpload, Input, Label, PageHeader, PhoneField, PortalShell, RadioGroup, RadioGroupItem, Spinner, TagInput, Textarea, TypeAhead } from "ppij-design-system";
 import logoUrl from "../../../../brand/ppij-logo.png";
 
 function Rows({ items }: { items: Array<[string, React.ReactNode]> }) {
@@ -76,6 +76,7 @@ function EditableSection({ title, read, children, onAfterSave }: { title: string
 
 function DataDiriSection() {
   const [provinsi, setProvinsi] = React.useState("Bali");
+  const [phone, setPhone] = React.useState("+81 90-1234-5678");
   const [phoneRevealed, setPhoneRevealed] = React.useState(false);
   const [minat, setMinat] = React.useState(["Fotografi", "Riset kecerdasan buatan", "Bahasa Jepang"]);
   return (
@@ -112,7 +113,7 @@ function DataDiriSection() {
         </F>
         <F label="Tanggal lahir"><Input type="date" defaultValue="1992-09-02" /></F>
         <F label="Provinsi asal di Indonesia"><TypeAhead value={provinsi} onChange={setProvinsi} options={["Bali", "Jawa Timur", "Jawa Barat", "DKI Jakarta", "Sulawesi Selatan"]} placeholder="Ketik provinsi atau kabupaten/kota" /></F>
-        <F label="Nomor telepon atau WhatsApp"><Input type="tel" defaultValue="+81 90-1234-5678" /></F>
+        <F label="Nomor telepon atau WhatsApp"><PhoneField value={phone} onChange={setPhone} defaultCode="+81" /></F>
         <F label="LINE ID"><Input defaultValue="darmakotama" /></F>
         <F label="Minat" span><TagInput values={minat} onChange={setMinat} suggestions={["Musik", "Olahraga", "Kuliner", "Teknologi"]} placeholder="Cari atau ketik minat" /></F>
       </div>
@@ -197,6 +198,7 @@ function PendanaanSection() {
 
 function IzinSection() {
   const [contactRevealed, setContactRevealed] = React.useState(false);
+  const [emPhone, setEmPhone] = React.useState("+62 812-3456-7890");
   return (
     <EditableSection
       onAfterSave={() => setContactRevealed(false)}
@@ -247,7 +249,7 @@ function IzinSection() {
         <div className="grid gap-4 sm:grid-cols-2">
           <F label="Nama kontak"><Input defaultValue="Ni Made Rai" /></F>
           <F label="Hubungan"><Input defaultValue="Ibu" /></F>
-          <F label="Nomor telepon kontak"><Input type="tel" defaultValue="+62 812-3456-7890" /></F>
+          <F label="Nomor telepon kontak"><PhoneField value={emPhone} onChange={setEmPhone} defaultCode="+62" /></F>
           <F label="Alamat kontak"><Textarea rows={3} defaultValue="Denpasar, Bali" /></F>
         </div>
       </fieldset>
@@ -297,19 +299,25 @@ function ProfileContent() {
               <IconHistory className="size-5 text-brand-red" aria-hidden="true" />
               Riwayat keanggotaan
             </h2>
-            <ol className="flex flex-col gap-3">
-              {history.map((change) => (
-                <li key={change.date + change.status}>
-                  <Card className="flex flex-wrap items-start justify-between gap-2 rounded-xl border border-brand-border bg-card p-4">
-                    <div>
-                      <p className="font-semibold text-brand-ink">{change.status}</p>
-                      <p className="text-sm text-brand-muted">{change.reason}</p>
+            <Card className="rounded-xl border border-brand-border bg-card p-5">
+              <ol className="grid">
+                {history.map((change, i) => (
+                  <li key={change.date + change.status} className="flex gap-3 pb-5 last:pb-0">
+                    <span className="flex flex-col items-center self-stretch" aria-hidden="true">
+                      <span className={i === 0 ? "mt-1.5 size-2.5 shrink-0 rounded-full bg-brand-red" : "mt-1.5 size-2.5 shrink-0 rounded-full bg-brand-muted"} />
+                      {i < history.length - 1 && <span className="mt-1 w-px flex-1 bg-brand-border" />}
+                    </span>
+                    <div className="flex flex-1 flex-wrap items-start justify-between gap-2">
+                      <div>
+                        <p className="font-semibold text-brand-ink">{change.status}</p>
+                        <p className="text-sm text-brand-muted">{change.reason}</p>
+                      </div>
+                      <time className="text-sm text-brand-muted">{change.date}</time>
                     </div>
-                    <time className="text-sm text-brand-muted">{change.date}</time>
-                  </Card>
-                </li>
-              ))}
-            </ol>
+                  </li>
+                ))}
+              </ol>
+            </Card>
           </section>
         </div>
         <div className="flex flex-col gap-5">

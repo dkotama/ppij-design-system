@@ -2,7 +2,7 @@ import * as React from "react";
 import { IconCircleCheck } from "@tabler/icons-react";
 import {
   Button, Checkbox, FileUpload, FormPanel, Input, Label, RadioGroup, RadioGroupItem,
-  SavingIndicator, Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+  PhoneField, SavingIndicator, Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
   Stepper, Textarea, Timeline, TypeAhead, type FileUploadStatus,
 } from "ppij-design-system";
 
@@ -20,6 +20,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 export function WizardView() {
   const [step, setStep] = React.useState(3);
+  const [phone, setPhone] = React.useState("+81 90-0000-0000");
   const [univ, setUniv] = React.useState("Okayama University");
   const [upload, setUpload] = React.useState<FileUploadStatus>("empty");
   const [fileName, setFileName] = React.useState("");
@@ -80,7 +81,7 @@ export function WizardView() {
             <Field label="Nama lengkap"><Input defaultValue="I Nyoman Darma Kotama" /></Field>
             <Field label="Tanggal lahir"><Input defaultValue="2 September 1992" /></Field>
             <Field label="Email"><Input defaultValue="darma.kotama@gmail.com" /></Field>
-            <Field label="Nomor WhatsApp"><Input defaultValue="+81 90-0000-0000" /></Field>
+            <Field label="Nomor telepon atau WhatsApp"><PhoneField value={phone} onChange={setPhone} defaultCode="+81" /></Field>
           </div>
         )}
         {step === 2 && (
