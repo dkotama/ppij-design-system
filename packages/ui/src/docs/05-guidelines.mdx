@@ -86,3 +86,70 @@ export const surfaceBox = { border: "1px solid #e3e5e8", borderRadius: 10, paddi
     </p>
   </div>
 </div>
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Forms: fields are always white.** Every text field, select, and search box
+      renders on the white card color, whatever surface it sits on: white card,
+      brand background, or tinted panel. One field, one appearance everywhere.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never make a field transparent. A transparent field takes the color of
+      whatever sits behind it, so the same field looks grey on a white page and
+      white on a grey page, and reads as two different components.
+    </p>
+  </div>
+</div>
+
+## Which surface when
+
+Pick the smallest surface that fits the task. The same job always uses the
+same surface, on every page.
+
+| Job | Surface |
+| --- | --- |
+| Decide one thing, or acknowledge a notice | Dialog |
+| Confirm a destructive action | AlertDialog, action named in full |
+| Fill a multi-field form, or review before saving | Drawer (desktop) or bottom sheet (phone) |
+| Report a finished action | Toast |
+| Show a notice that must still be visible later | Inline Alert |
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Toast: one short sentence, one at a time.** "Perubahan tersimpan."
+      A success with an undo action is the model case: the action finished,
+      the toast reports it, and then it leaves.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never put an error that needs action, form validation, or critical
+      information in a toast alone. Validation errors belong at the field;
+      errors that block work belong in an Alert or a Dialog. Never stack
+      several toasts for one action.
+    </p>
+  </div>
+</div>
+
+## Button action intents
+
+A button states its intent by color. The words on the button say what
+happens; the variant says how much care it needs.
+
+| Intent | Variant | Use for |
+| --- | --- | --- |
+| Normal | default | The standard action on a surface: save, submit, continue |
+| Confirm | success | Approving or completing: Setujui, Konfirmasi, Selesaikan |
+| Alert | warning | Consequential but reversible: Arsipkan, Nonaktifkan |
+| Danger | destructive | Destructive: Hapus. Always behind an AlertDialog |
+
+One surface carries one primary intent. Danger is never the primary
+button on a surface; it sits apart and confirms first.

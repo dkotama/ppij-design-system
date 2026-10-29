@@ -18,7 +18,7 @@ export const EditPanel: Story = {
           <SheetDescription>Perubahan tersimpan ke profil anggota.</SheetDescription>
         </SheetHeader>
         <div style={{ display: "grid", gap: 10, padding: "0 16px" }}>
-          <div style={{ display: "grid", gap: 6 }}><Label>Nama</Label><Input defaultValue="Darma Kotama" /></div>
+          <div style={{ display: "grid", gap: 6 }}><Label>Nama</Label><Input defaultValue="I Nyoman Darma Kotama" /></div>
           <div style={{ display: "grid", gap: 6 }}><Label>Komsat</Label><Input defaultValue="Okayama" /></div>
         </div>
         <SheetFooter>

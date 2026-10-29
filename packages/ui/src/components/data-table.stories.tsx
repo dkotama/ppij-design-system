@@ -12,10 +12,13 @@ export default meta;
 type Story = StoryObj<typeof DataTable>;
 
 const all = [
-  ["Darma Kotama", "Okayama", "Aktif"],
-  ["Putu Sugiartawan", "Tokyo", "Menunggu"],
-  ["Kadek Gemilang", "Osaka", "Aktif"],
-  ["Wayan Kintara", "Nagoya", "Aktif"],
+  ["I Nyoman Darma Kotama", "Okayama", "Aktif"],
+  ["Marcus Aurelius Antoninus", "Roma", "Aktif"],
+  ["Lucius Annaeus Seneca", "Corduba", "Menunggu"],
+  ["Zeno of Citium", "Kition", "Aktif"],
+  ["Diogenes of Sinope", "Sinope", "Aktif"],
+  ["Epictetus", "Hierapolis", "Aktif"],
+  ["Cleanthes of Assos", "Assos", "Menunggu"],
 ];
 function Demo() {
   const [q, setQ] = React.useState("");
@@ -46,7 +49,7 @@ export const Directory: Story = { render: () => <Demo /> };
 
 export const NoResults: Story = {
   render: () => (
-    <DataTable searchValue="zzz" onSearchChange={() => {}} searchPlaceholder="Cari anggota..." footerText="Menampilkan 0 dari 4 anggota" pageLabel="Halaman 1 dari 1" previousDisabled nextDisabled >
+    <DataTable searchValue="zzz" onSearchChange={() => {}} searchPlaceholder="Cari anggota..." footerText="Menampilkan 0 dari 7 anggota" pageLabel="Halaman 1 dari 1" previousDisabled nextDisabled >
       <div style={{ padding: 16 }}>
         <Empty>
           <EmptyHeader>

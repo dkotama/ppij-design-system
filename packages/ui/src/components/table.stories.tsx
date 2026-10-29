@@ -7,9 +7,11 @@ export default meta;
 type Story = StoryObj<typeof Table>;
 
 const rows = [
-  ["Darma Kotama", "Okayama", "Aktif"],
-  ["Putu Sugiartawan", "Tokyo", "Menunggu"],
-  ["Kadek Gemilang", "Osaka", "Aktif"],
+  ["I Nyoman Darma Kotama", "Okayama", "Aktif"],
+  ["Marcus Aurelius Antoninus", "Roma", "Aktif"],
+  ["Lucius Annaeus Seneca", "Corduba", "Menunggu"],
+  ["Zeno of Citium", "Kition", "Aktif"],
+  ["Epictetus", "Hierapolis", "Aktif"],
 ];
 export const MemberList: Story = {
   render: () => (

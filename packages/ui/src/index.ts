@@ -53,3 +53,16 @@ export { DataTable, type DataTableProps } from "./components/data-table";
 export { TopBar, type TopBarProps, type TopBarLink } from "./components/top-bar";
 export { ViewToggle, type ViewToggleProps, type ViewToggleOption } from "./components/view-toggle";
 export { BottomBar, type BottomBarProps, type BottomBarItem } from "./components/bottom-bar";
+export {
+  Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter,
+  DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger,
+} from "./components/dialog";
+export {
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
+  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
+  AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger,
+} from "./components/alert-dialog";
+export { Toaster } from "./components/sonner";
+export { SearchFilter, type SearchFilterProps, type ActiveFilter } from "./components/search-filter";
+export { UnitCard, type UnitCardProps } from "./components/unit-card";
+export { StatCard, type StatCardProps } from "./components/stat-card";
