@@ -197,3 +197,26 @@ button on a surface; it sits apart and confirms first.
     </p>
   </div>
 </div>
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Mask sealed data by default.** Fields the data model encrypts at
+      rest (the member phone number and the whole emergency contact)
+      render as a fixed mask, never as text on page load. Reveal is one
+      explicit action per section (Tampilkan), saving or leaving the
+      section re-masks it, and in the real system a reveal is audited.
+      Editing a section is its reveal intent, for that section only.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never render sealed fields as plain text by default, never let the
+      mask length hint at the real value's length, and never copy sealed
+      values into summaries, notifications, or other surfaces where the
+      reveal action does not exist.
+    </p>
+  </div>
+</div>

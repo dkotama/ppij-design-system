@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconHistory, IconHome, IconIdBadge2, IconPencil } from "@tabler/icons-react";
+import { IconEye, IconEyeOff, IconHistory, IconHome, IconIdBadge2, IconPencil } from "@tabler/icons-react";
 import { PortalShell } from "./portal-shell";
 import { PageHeader } from "./page-header";
 import { Card } from "./card";
@@ -19,14 +19,14 @@ import logoUrl from "../../../../brand/ppij-logo.png";
 
 /**
  * The member Profil page, read first. Every registration datum is
- * shown as text, grouped and labelled exactly as in the wizard
- * (Data diri, Domisili, Pendidikan, Pendanaan, Izin tinggal dan
- * kontak darurat). Each section edits on intent: Ubah swaps the text
- * for that section's form, Simpan carries its loading inside the
- * button (spinner plus Menyimpan...), and Batal returns to reading.
- * The rail keeps the issued facts (read-only, no Ubah) and the
- * status history. Save buttons are the default button size; the
- * 44px height belongs to fields and nav targets, not to buttons.
+ * shown as text, grouped and labelled exactly as in the wizard.
+ * Each section edits on intent: Ubah swaps the text for that
+ * section's form, Simpan carries its loading inside the button, and
+ * Batal returns to reading. Sealed data (data model design section
+ * 7: the member phone and the whole emergency contact, encrypted at
+ * rest) is masked by default; Tampilkan reveals it for that section
+ * only, saving re-masks it, and in the real system a reveal is
+ * audited. The rail keeps the issued facts and the status history.
  */
 function Rows({ items }: { items: Array<[string, React.ReactNode]> }) {
   return (
@@ -51,6 +51,10 @@ function Chips({ values }: { values: string[] }) {
   );
 }
 
+function Masked() {
+  return <span className="tracking-[0.2em]" aria-label="Tersembunyi, terenkripsi">{"\u2022".repeat(10)}</span>;
+}
+
 function F({ label, children, span }: { label: string; children: React.ReactNode; span?: boolean }) {
   return (
     <div className={span ? "grid gap-1.5 sm:col-span-2" : "grid gap-1.5"}>
@@ -60,13 +64,13 @@ function F({ label, children, span }: { label: string; children: React.ReactNode
   );
 }
 
-function EditableSection({ title, read, children }: { title: string; read: React.ReactNode; children: React.ReactNode }) {
+function EditableSection({ title, read, children, onAfterSave }: { title: string; read: React.ReactNode; children: React.ReactNode; onAfterSave?: () => void }) {
   const [editing, setEditing] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
   const [saved, setSaved] = React.useState(false);
   const save = () => {
     setSaving(true);
-    window.setTimeout(() => { setSaving(false); setEditing(false); setSaved(true); }, 900);
+    window.setTimeout(() => { setSaving(false); setEditing(false); setSaved(true); onAfterSave?.(); }, 900);
   };
   return (
     <Card className="grid gap-4 rounded-xl border border-brand-border bg-card p-5">
@@ -97,9 +101,11 @@ function EditableSection({ title, read, children }: { title: string; read: React
 
 function DataDiriSection() {
   const [provinsi, setProvinsi] = React.useState("Bali");
+  const [phoneRevealed, setPhoneRevealed] = React.useState(false);
   const [minat, setMinat] = React.useState(["Fotografi", "Riset kecerdasan buatan", "Bahasa Jepang"]);
   return (
     <EditableSection
+      onAfterSave={() => setPhoneRevealed(false)}
       title="Data diri"
       read={<Rows items={[
         ["Nama lengkap", "I Nyoman Darma Kotama"],
@@ -107,7 +113,15 @@ function DataDiriSection() {
         ["Jenis kelamin", "Laki-laki"],
         ["Tanggal lahir", "2 September 1992"],
         ["Provinsi asal di Indonesia", "Bali"],
-        ["Nomor telepon atau WhatsApp", "+81 90-1234-5678"],
+        ["Nomor telepon atau WhatsApp", phoneRevealed ? "+81 90-1234-5678" : (
+          <span key="phone" className="flex flex-wrap items-center gap-2">
+            <Masked />
+            <Button variant="ghost" size="sm" onClick={() => setPhoneRevealed(true)}>
+              <IconEye className="size-4" aria-hidden="true" />
+              Tampilkan
+            </Button>
+          </span>
+        )],
         ["LINE ID", "darmakotama"],
         ["Minat", <Chips key="minat" values={minat} />],
       ]} />}
@@ -207,21 +221,46 @@ function PendanaanSection() {
 }
 
 function IzinSection() {
+  const [contactRevealed, setContactRevealed] = React.useState(false);
   return (
     <EditableSection
+      onAfterSave={() => setContactRevealed(false)}
       title="Izin tinggal dan kontak darurat"
       read={<>
         <Rows items={[
           ["Status izin tinggal", "Student"],
           ["Tanggal kedaluwarsa izin tinggal", "31 Maret 2027"],
         ]} />
-        <h3 className="pt-4 pb-1 text-sm font-bold text-brand-ink">Kontak darurat</h3>
-        <Rows items={[
-          ["Nama kontak", "Ni Made Rai"],
-          ["Hubungan", "Ibu"],
-          ["Nomor telepon kontak", "+62 812-3456-7890"],
-          ["Alamat kontak", "Denpasar, Bali"],
-        ]} />
+        <h3 className="flex flex-wrap items-center gap-2 pt-4 pb-1 text-sm font-bold text-brand-ink">
+          Kontak darurat
+          <span className="text-xs font-medium text-brand-muted">(terenkripsi)</span>
+          {contactRevealed ? (
+            <Button variant="ghost" size="sm" onClick={() => setContactRevealed(false)}>
+              <IconEyeOff className="size-4" aria-hidden="true" />
+              Sembunyikan
+            </Button>
+          ) : (
+            <Button variant="ghost" size="sm" onClick={() => setContactRevealed(true)}>
+              <IconEye className="size-4" aria-hidden="true" />
+              Tampilkan
+            </Button>
+          )}
+        </h3>
+        {contactRevealed ? (
+          <Rows items={[
+            ["Nama kontak", "Ni Made Rai"],
+            ["Hubungan", "Ibu"],
+            ["Nomor telepon kontak", "+62 812-3456-7890"],
+            ["Alamat kontak", "Denpasar, Bali"],
+          ]} />
+        ) : (
+          <Rows items={[
+            ["Nama kontak", <Masked key="m1" />],
+            ["Hubungan", <Masked key="m2" />],
+            ["Nomor telepon kontak", <Masked key="m3" />],
+            ["Alamat kontak", <Masked key="m4" />],
+          ]} />
+        )}
       </>}
     >
       <div className="grid gap-4 sm:grid-cols-2">
