@@ -1,30 +1,222 @@
 import * as React from "react";
-import { IconHistory, IconHome, IconIdBadge2 } from "@tabler/icons-react";
-import { Badge, Button, Card, FormPanel, Input, Label, PageHeader, PortalShell, SavingIndicator, TagInput, Textarea, type SavingStatus } from "ppij-design-system";
+import { IconHistory, IconHome, IconIdBadge2, IconPencil } from "@tabler/icons-react";
+import { Badge, Button, Card, FileUpload, Input, Label, PageHeader, PortalShell, RadioGroup, RadioGroupItem, Spinner, TagInput, Textarea, TypeAhead } from "ppij-design-system";
 import logoUrl from "../../../../brand/ppij-logo.png";
 
-function SaveRow() {
-  const [status, setStatus] = React.useState<SavingStatus>("idle");
+function Rows({ items }: { items: Array<[string, React.ReactNode]> }) {
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <Button
-        type="submit"
-        disabled={status === "saving"}
-        className="min-h-11 px-5"
-        onClick={(event) => {
-          event.preventDefault();
-          setStatus("saving");
-          window.setTimeout(() => setStatus("saved"), 900);
-        }}
-      >
-        Simpan perubahan
-      </Button>
-      <SavingIndicator status={status} locale="id" />
+    <dl className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
+      {items.map(([label, value]) => (
+        <div key={label} className="grid gap-0.5">
+          <dt className="text-sm text-brand-muted">{label}</dt>
+          <dd className="font-medium text-brand-ink">{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function Chips({ values }: { values: string[] }) {
+  return (
+    <span className="flex flex-wrap gap-1.5">
+      {values.map((v) => (
+        <span key={v} className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-brand-ink">{v}</span>
+      ))}
+    </span>
+  );
+}
+
+function F({ label, children, span }: { label: string; children: React.ReactNode; span?: boolean }) {
+  return (
+    <div className={span ? "grid gap-1.5 sm:col-span-2" : "grid gap-1.5"}>
+      <Label>{label}</Label>
+      {children}
     </div>
   );
 }
 
-function Fact({ label, children }: { label: string; children: React.ReactNode }) {
+function EditableSection({ title, read, children }: { title: string; read: React.ReactNode; children: React.ReactNode }) {
+  const [editing, setEditing] = React.useState(false);
+  const [saving, setSaving] = React.useState(false);
+  const [saved, setSaved] = React.useState(false);
+  const save = () => {
+    setSaving(true);
+    window.setTimeout(() => { setSaving(false); setEditing(false); setSaved(true); }, 900);
+  };
+  return (
+    <Card className="grid gap-4 rounded-xl border border-brand-border bg-card p-5">
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="text-base font-semibold text-brand-ink">{title}</h2>
+        {!editing && (
+          <Button variant="ghost" size="sm" onClick={() => { setEditing(true); setSaved(false); }}>
+            <IconPencil className="size-4" aria-hidden="true" />
+            Ubah
+          </Button>
+        )}
+      </div>
+      {saved && !editing && <p role="status" className="-mt-2 text-sm text-success">Perubahan tersimpan.</p>}
+      {editing ? (
+        <form className="grid gap-4" onSubmit={(e) => e.preventDefault()}>
+          {children}
+          <div className="flex flex-wrap gap-2 pt-1">
+            <Button type="submit" disabled={saving} aria-busy={saving} onClick={save}>
+              {saving ? (<><Spinner size="sm" decorative /><span>Menyimpan…</span></>) : "Simpan perubahan"}
+            </Button>
+            <Button variant="ghost" disabled={saving} onClick={() => setEditing(false)}>Batal</Button>
+          </div>
+        </form>
+      ) : read}
+    </Card>
+  );
+}
+
+function DataDiriSection() {
+  const [provinsi, setProvinsi] = React.useState("Bali");
+  const [minat, setMinat] = React.useState(["Fotografi", "Riset kecerdasan buatan", "Bahasa Jepang"]);
+  return (
+    <EditableSection
+      title="Data diri"
+      read={<Rows items={[
+        ["Nama lengkap", "I Nyoman Darma Kotama"],
+        ["Nama panggilan", "Darma"],
+        ["Jenis kelamin", "Laki-laki"],
+        ["Tanggal lahir", "2 September 1992"],
+        ["Provinsi asal di Indonesia", "Bali"],
+        ["Nomor telepon atau WhatsApp", "+81 90-1234-5678"],
+        ["LINE ID", "darmakotama"],
+        ["Minat", <Chips key="minat" values={minat} />],
+      ]} />}
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <F label="Nama lengkap"><Input defaultValue="I Nyoman Darma Kotama" /></F>
+        <F label="Nama panggilan"><Input defaultValue="Darma" /></F>
+        <F label="Jenis kelamin">
+          <RadioGroup defaultValue="laki-laki" className="flex gap-4 pt-1.5">
+            <span className="flex items-center gap-2"><RadioGroupItem value="laki-laki" id="jk-l" /><Label htmlFor="jk-l">Laki-laki</Label></span>
+            <span className="flex items-center gap-2"><RadioGroupItem value="perempuan" id="jk-p" /><Label htmlFor="jk-p">Perempuan</Label></span>
+          </RadioGroup>
+        </F>
+        <F label="Tanggal lahir"><Input type="date" defaultValue="1992-09-02" /></F>
+        <F label="Provinsi asal di Indonesia"><TypeAhead value={provinsi} onChange={setProvinsi} options={["Bali", "Jawa Timur", "Jawa Barat", "DKI Jakarta", "Sulawesi Selatan"]} placeholder="Ketik provinsi atau kabupaten/kota" /></F>
+        <F label="Nomor telepon atau WhatsApp"><Input type="tel" defaultValue="+81 90-1234-5678" /></F>
+        <F label="LINE ID"><Input defaultValue="darmakotama" /></F>
+        <F label="Minat" span><TagInput values={minat} onChange={setMinat} suggestions={["Musik", "Olahraga", "Kuliner", "Teknologi"]} placeholder="Cari atau ketik minat" /></F>
+      </div>
+    </EditableSection>
+  );
+}
+
+function DomisiliSection() {
+  const [prefektur, setPrefektur] = React.useState("Okayama");
+  const [kota, setKota] = React.useState("Kita-ku, Kota Okayama");
+  return (
+    <EditableSection
+      title="Domisili di Jepang"
+      read={<Rows items={[
+        ["Kode pos", "700-0001"],
+        ["Prefektur", "Okayama"],
+        ["Kota atau kecamatan", "Kita-ku, Kota Okayama"],
+        ["Komsat", "Okayama"],
+      ]} />}
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <F label="Kode pos"><Input defaultValue="700-0001" inputMode="numeric" /></F>
+        <F label="Prefektur"><TypeAhead value={prefektur} onChange={setPrefektur} options={["Okayama", "Hiroshima", "Osaka", "Kyoto"]} placeholder="Ketik prefektur" /></F>
+        <F label="Kota atau kecamatan"><TypeAhead value={kota} onChange={setKota} options={["Kita-ku, Kota Okayama", "Naka-ku, Kota Okayama", "Kurashiki"]} placeholder="Ketik nama kota atau ku" /></F>
+      </div>
+      <p className="rounded-md border border-brand-border bg-secondary/50 p-3 text-sm text-brand-ink">Komsat Anda: <strong>Okayama</strong>, ditentukan otomatis dari domisili.</p>
+    </EditableSection>
+  );
+}
+
+function PendidikanSection() {
+  const [institusi, setInstitusi] = React.useState("Okayama University");
+  return (
+    <EditableSection
+      title="Pendidikan"
+      read={<Rows items={[
+        ["Institusi", "Okayama University"],
+        ["Fakultas atau sekolah pascasarjana", "Graduate School of Science and Technology"],
+        ["Jenjang", "S2 (Magister)"],
+        ["Program studi", "Computer Science"],
+        ["Bulan masuk", "April 2025"],
+        ["Perkiraan bulan lulus", "Maret 2027"],
+        ["Lab atau pembimbing", "Laboratorium Sistem Informasi"],
+        ["Nomor pelajar", "76123456"],
+        ["Kartu pelajar", "Terunggah (kartu-pelajar.jpg)"],
+      ]} />}
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <F label="Institusi"><TypeAhead value={institusi} onChange={setInstitusi} options={["Okayama University", "Hiroshima University", "Osaka University", "Kyoto University"]} placeholder="Ketik institusi" /></F>
+        <F label="Fakultas atau sekolah pascasarjana"><Input defaultValue="Graduate School of Science and Technology" /></F>
+        <F label="Jenjang">
+          <RadioGroup defaultValue="s2" className="flex flex-wrap gap-4 pt-1.5">
+            <span className="flex items-center gap-2"><RadioGroupItem value="s1" id="jg-s1" /><Label htmlFor="jg-s1">S1</Label></span>
+            <span className="flex items-center gap-2"><RadioGroupItem value="s2" id="jg-s2" /><Label htmlFor="jg-s2">S2</Label></span>
+            <span className="flex items-center gap-2"><RadioGroupItem value="s3" id="jg-s3" /><Label htmlFor="jg-s3">S3</Label></span>
+          </RadioGroup>
+        </F>
+        <F label="Program studi"><Input defaultValue="Computer Science" /></F>
+        <F label="Bulan masuk"><Input type="month" defaultValue="2025-04" /></F>
+        <F label="Perkiraan bulan lulus"><Input type="month" defaultValue="2027-03" /></F>
+        <F label="Lab atau pembimbing"><Input defaultValue="Laboratorium Sistem Informasi" /></F>
+        <F label="Nomor pelajar"><Input defaultValue="76123456" inputMode="numeric" /></F>
+        <F label="Kartu pelajar" span><FileUpload label="Foto kartu pelajar" status="done" fileName="kartu-pelajar.jpg" onPick={() => {}} onRemove={() => {}} /></F>
+      </div>
+    </EditableSection>
+  );
+}
+
+function PendanaanSection() {
+  const [funding, setFunding] = React.useState(["Beasiswa: JASSO"]);
+  return (
+    <EditableSection
+      title="Pendanaan"
+      read={<Rows items={[["Sumber pendanaan", <Chips key="funding" values={funding} />]]} />}
+    >
+      <F label="Sumber pendanaan">
+        <TagInput values={funding} onChange={setFunding} suggestions={["MEXT", "LPDP", "Beasiswa universitas", "Biaya sendiri"]} placeholder="Cari atau ketik sumber pendanaan" />
+      </F>
+    </EditableSection>
+  );
+}
+
+function IzinSection() {
+  return (
+    <EditableSection
+      title="Izin tinggal dan kontak darurat"
+      read={<>
+        <Rows items={[
+          ["Status izin tinggal", "Student"],
+          ["Tanggal kedaluwarsa izin tinggal", "31 Maret 2027"],
+        ]} />
+        <h3 className="pt-4 pb-1 text-sm font-bold text-brand-ink">Kontak darurat</h3>
+        <Rows items={[
+          ["Nama kontak", "Ni Made Rai"],
+          ["Hubungan", "Ibu"],
+          ["Nomor telepon kontak", "+62 812-3456-7890"],
+          ["Alamat kontak", "Denpasar, Bali"],
+        ]} />
+      </>}
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <F label="Status izin tinggal"><Input defaultValue="Student" /></F>
+        <F label="Tanggal kedaluwarsa izin tinggal"><Input type="date" defaultValue="2027-03-31" /></F>
+      </div>
+      <fieldset className="grid gap-4 border-t border-brand-border pt-4">
+        <legend className="px-1 text-sm font-bold text-brand-ink">Kontak darurat</legend>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <F label="Nama kontak"><Input defaultValue="Ni Made Rai" /></F>
+          <F label="Hubungan"><Input defaultValue="Ibu" /></F>
+          <F label="Nomor telepon kontak"><Input type="tel" defaultValue="+62 812-3456-7890" /></F>
+          <F label="Alamat kontak"><Textarea rows={3} defaultValue="Denpasar, Bali" /></F>
+        </div>
+      </fieldset>
+    </EditableSection>
+  );
+}
+
+function RailFact({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="grid gap-0.5">
       <dt className="text-xs text-brand-muted">{label}</dt>
@@ -34,7 +226,6 @@ function Fact({ label, children }: { label: string; children: React.ReactNode })
 }
 
 function ProfileContent() {
-  const [minat, setMinat] = React.useState(["Fotografi", "Riset kecerdasan buatan", "Bahasa Jepang"]);
   const history = [
     { status: "Aktif", reason: "Kartu anggota diterbitkan", date: "6 Okt 2026" },
     { status: "Belum lengkap", reason: "Pendaftaran diterima", date: "1 Okt 2026" },
@@ -56,10 +247,10 @@ function ProfileContent() {
               </div>
             </div>
             <dl className="grid gap-3 border-t border-brand-border pt-4">
-              <Fact label="Nomor anggota"><span className="font-mono">PPIJ-2026-000123</span></Fact>
-              <Fact label="Komsat">Okayama</Fact>
-              <Fact label="Korda">Kansai</Fact>
-              <Fact label="Berlaku sampai">6 Oktober 2027</Fact>
+              <RailFact label="Nomor anggota"><span className="font-mono">PPIJ-2026-000123</span></RailFact>
+              <RailFact label="Komsat">Okayama</RailFact>
+              <RailFact label="Korda">Kansai</RailFact>
+              <RailFact label="Berlaku sampai">6 Oktober 2027</RailFact>
             </dl>
           </Card>
           <section aria-labelledby="profile-history-heading">
@@ -83,35 +274,11 @@ function ProfileContent() {
           </section>
         </div>
         <div className="flex flex-col gap-5">
-          <FormPanel title="Minat" titleAs="h2" footer={<SaveRow />}>
-            <form className="grid gap-3" onSubmit={(e) => e.preventDefault()}>
-              <Label>Tambah atau hapus minat</Label>
-              <TagInput values={minat} onChange={setMinat} suggestions={["Musik", "Olahraga", "Kuliner", "Teknologi"]} placeholder="Cari atau ketik minat" />
-            </form>
-          </FormPanel>
-          <FormPanel title="Kontak dan data tempat tinggal" titleAs="h2" footer={<SaveRow />}>
-            <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid gap-1.5"><Label htmlFor="pf-nickname">Nama panggilan</Label><Input id="pf-nickname" defaultValue="Darma" autoComplete="nickname" /></div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="grid gap-1.5"><Label htmlFor="pf-phone">Telepon / WhatsApp</Label><Input id="pf-phone" type="tel" defaultValue="+81 90-1234-5678" autoComplete="tel" /></div>
-                <div className="grid gap-1.5"><Label htmlFor="pf-line">LINE ID</Label><Input id="pf-line" defaultValue="darmakotama" /></div>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="grid gap-1.5"><Label htmlFor="pf-pref">Kode prefektur</Label><Input id="pf-pref" inputMode="numeric" defaultValue="33" /></div>
-                <div className="grid gap-1.5"><Label htmlFor="pf-city">Kode kota</Label><Input id="pf-city" inputMode="numeric" defaultValue="33100" /></div>
-              </div>
-              <div className="grid gap-1.5"><Label htmlFor="pf-expiry">Masa berlaku status tinggal</Label><Input id="pf-expiry" type="date" defaultValue="2027-03-31" /></div>
-              <fieldset className="grid gap-4 border-t border-brand-border pt-4">
-                <legend className="px-1 text-sm font-bold text-brand-ink">Kontak darurat</legend>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="grid gap-1.5"><Label htmlFor="pf-em-name">Nama</Label><Input id="pf-em-name" defaultValue="Ni Made Rai" /></div>
-                  <div className="grid gap-1.5"><Label htmlFor="pf-em-rel">Hubungan</Label><Input id="pf-em-rel" defaultValue="Ibu" /></div>
-                </div>
-                <div className="grid gap-1.5"><Label htmlFor="pf-em-phone">Telepon</Label><Input id="pf-em-phone" type="tel" defaultValue="+62 812-3456-7890" /></div>
-                <div className="grid gap-1.5"><Label htmlFor="pf-em-addr">Alamat</Label><Textarea id="pf-em-addr" rows={3} defaultValue="Denpasar, Bali" /></div>
-              </fieldset>
-            </form>
-          </FormPanel>
+          <DataDiriSection />
+          <DomisiliSection />
+          <PendidikanSection />
+          <PendanaanSection />
+          <IzinSection />
         </div>
       </div>
     </div>

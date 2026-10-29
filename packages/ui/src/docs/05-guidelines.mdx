@@ -173,3 +173,27 @@ button on a surface; it sits apart and confirms first.
     </p>
   </div>
 </div>
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Loading lives inside the save button.** A form with an explicit
+      Simpan button shows its saving state in that button: spinner plus
+      "Menyimpan...", disabled, aria-busy. The result is confirmed by a
+      status line ("Perubahan tersimpan.") or a toast. Save buttons use
+      the default button size; the 44px height belongs to fields and
+      navigation targets, not to buttons.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never park a separate loading indicator next to a save button, and
+      never inflate a save button to field height to make it look
+      important. SavingIndicator is reserved for autosave surfaces that
+      have no button to carry the state: toggles, pickers, and drawers
+      that save on change.
+    </p>
+  </div>
+</div>
