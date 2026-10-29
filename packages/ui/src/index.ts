@@ -87,3 +87,9 @@ export { WizardHeader, type WizardHeaderProps, type WizardLanguage } from "./com
 export { PillRadio, pillRadioClass, type PillRadioProps, type PillRadioOption } from "./components/pill-radio";
 export { MonthPicker, type MonthPickerProps } from "./components/month-picker";
 export { PostcodeField, type PostcodeFieldProps, type PostcodeCandidate } from "./components/postcode-field";
+export { FundingPicker, type FundingPickerProps } from "./components/funding-picker";
+export { CardUpload, type CardUploadProps, type CardSide, type CardSideState } from "./components/card-upload";
+export { SuggestionSheet, type SuggestionSheetProps, type SuggestKind } from "./components/suggestion-sheet";
+export { SubmitOverlay, type SubmitOverlayProps } from "./components/submit-overlay";
+export { ReviewPanel, type ReviewPanelProps } from "./components/review-panel";
+export { WizardFooter, type WizardFooterProps } from "./components/wizard-footer";
