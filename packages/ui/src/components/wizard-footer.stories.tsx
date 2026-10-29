@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { WizardFooter } from "./wizard-footer";
 
-const meta: Meta<typeof WizardFooter> = { title: "Portal/WizardFooter", component: WizardFooter, parameters: { layout: "fullscreen" } };
+const meta: Meta<typeof WizardFooter> = { title: "Wizard/WizardFooter", component: WizardFooter, parameters: { layout: "fullscreen" } };
 export default meta;
 type Story = StoryObj<typeof WizardFooter>;
 

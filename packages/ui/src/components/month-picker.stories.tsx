@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { MonthPicker } from "./month-picker";
 
-const meta: Meta<typeof MonthPicker> = { title: "Portal/MonthPicker", component: MonthPicker };
+const meta: Meta<typeof MonthPicker> = { title: "Wizard/MonthPicker", component: MonthPicker };
 export default meta;
 type Story = StoryObj<typeof MonthPicker>;
 

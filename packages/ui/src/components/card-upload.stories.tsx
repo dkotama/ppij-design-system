@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { CardUpload, type CardSideState } from "./card-upload";
 
-const meta: Meta<typeof CardUpload> = { title: "Portal/CardUpload", component: CardUpload };
+const meta: Meta<typeof CardUpload> = { title: "Wizard/CardUpload", component: CardUpload };
 export default meta;
 type Story = StoryObj<typeof CardUpload>;
 

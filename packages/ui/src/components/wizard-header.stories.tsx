@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { WizardHeader } from "./wizard-header";
 
-const meta: Meta<typeof WizardHeader> = { title: "Portal/WizardHeader", component: WizardHeader, parameters: { layout: "fullscreen" } };
+const meta: Meta<typeof WizardHeader> = { title: "Wizard/WizardHeader", component: WizardHeader, parameters: { layout: "fullscreen" } };
 export default meta;
 type Story = StoryObj<typeof WizardHeader>;
 

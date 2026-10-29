@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SuggestionSheet } from "./suggestion-sheet";
 import { Button } from "./button";
 
-const meta: Meta<typeof SuggestionSheet> = { title: "Portal/SuggestionSheet", component: SuggestionSheet };
+const meta: Meta<typeof SuggestionSheet> = { title: "Wizard/SuggestionSheet", component: SuggestionSheet };
 export default meta;
 type Story = StoryObj<typeof SuggestionSheet>;
 

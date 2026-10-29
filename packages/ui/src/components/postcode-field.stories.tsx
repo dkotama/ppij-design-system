@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { PostcodeField } from "./postcode-field";
 import { Label } from "./label";
 
-const meta: Meta<typeof PostcodeField> = { title: "Portal/PostcodeField", component: PostcodeField };
+const meta: Meta<typeof PostcodeField> = { title: "Wizard/PostcodeField", component: PostcodeField };
 export default meta;
 type Story = StoryObj<typeof PostcodeField>;
 

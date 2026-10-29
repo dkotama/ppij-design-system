@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ReviewPanel } from "./review-panel";
 
-const meta: Meta<typeof ReviewPanel> = { title: "Portal/ReviewPanel", component: ReviewPanel };
+const meta: Meta<typeof ReviewPanel> = { title: "Wizard/ReviewPanel", component: ReviewPanel };
 export default meta;
 type Story = StoryObj<typeof ReviewPanel>;
 

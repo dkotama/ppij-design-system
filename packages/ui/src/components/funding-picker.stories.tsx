@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { FundingPicker } from "./funding-picker";
 import { Label } from "./label";
 
-const meta: Meta<typeof FundingPicker> = { title: "Portal/FundingPicker", component: FundingPicker };
+const meta: Meta<typeof FundingPicker> = { title: "Wizard/FundingPicker", component: FundingPicker };
 export default meta;
 type Story = StoryObj<typeof FundingPicker>;
 

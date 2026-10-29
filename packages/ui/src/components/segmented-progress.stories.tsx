@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SegmentedProgress } from "./segmented-progress";
 
-const meta: Meta<typeof SegmentedProgress> = { title: "Portal/SegmentedProgress", component: SegmentedProgress };
+const meta: Meta<typeof SegmentedProgress> = { title: "Wizard/SegmentedProgress", component: SegmentedProgress };
 export default meta;
 type Story = StoryObj<typeof SegmentedProgress>;
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { PillRadio } from "./pill-radio";
 import { Label } from "./label";
 
-const meta: Meta<typeof PillRadio> = { title: "Portal/PillRadio", component: PillRadio };
+const meta: Meta<typeof PillRadio> = { title: "Wizard/PillRadio", component: PillRadio };
 export default meta;
 type Story = StoryObj<typeof PillRadio>;
 
