@@ -25,7 +25,7 @@ export interface WizardHeaderProps {
   total: number
   progressLabel: string
   savingStatus: SavingStatus
-  locale?: string
+  locale?: "id" | "en"
   languages: WizardLanguage[]
   languageLabel?: string
   onLanguageSelect?: (language: WizardLanguage) => void
