@@ -153,3 +153,70 @@ happens; the variant says how much care it needs.
 
 One surface carries one primary intent. Danger is never the primary
 button on a surface; it sits apart and confirms first.
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Cards in a row share one height.** Grid items stretch, and the card
+      fills its item, so every bottom edge in the row aligns. Equal heights
+      are what make a grid read as a system.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never ship uneven cards: sibling cards whose heights follow their
+      text, leaving ragged bottoms and floating gaps. Uneven cards read as
+      a defect at a glance, and no amount of content importance excuses
+      them. Let the row take the tallest card's height.
+    </p>
+  </div>
+</div>
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Loading lives inside the save button.** A form with an explicit
+      Simpan button shows its saving state in that button: spinner plus
+      "Menyimpan...", disabled, aria-busy. The result is confirmed by a
+      status line ("Perubahan tersimpan.") or a toast. Save buttons use
+      the default button size; the 44px height belongs to fields and
+      navigation targets, not to buttons.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never park a separate loading indicator next to a save button, and
+      never inflate a save button to field height to make it look
+      important. SavingIndicator is reserved for autosave surfaces that
+      have no button to carry the state: toggles, pickers, and drawers
+      that save on change.
+    </p>
+  </div>
+</div>
+
+<div className="ppij-guideline-grid">
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="do">Do</span>
+    <p>
+      **Mask sealed data by default.** Fields the data model encrypts at
+      rest (the member phone number and the whole emergency contact)
+      render as a fixed mask, never as text on page load. Reveal is one
+      explicit action per section (Tampilkan), saving or leaving the
+      section re-masks it, and in the real system a reveal is audited.
+      Editing a section is its reveal intent, for that section only.
+    </p>
+  </div>
+  <div className="ppij-guideline-card">
+    <span className="ppij-guideline-label" data-kind="dont">Do not</span>
+    <p>
+      Never render sealed fields as plain text by default, never let the
+      mask length hint at the real value's length, and never copy sealed
+      values into summaries, notifications, or other surfaces where the
+      reveal action does not exist.
+    </p>
+  </div>
+</div>

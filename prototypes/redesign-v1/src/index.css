@@ -1,0 +1,7 @@
+@import "../../../tokens/tokens.css";
+@source "../../../packages/ui/src";
+
+body {
+  font-family: "Plus Jakarta Sans", "Noto Sans JP", system-ui, sans-serif;
+  background: var(--color-brand-cream, #f6f6f4);
+}
