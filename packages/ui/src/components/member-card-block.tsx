@@ -60,7 +60,40 @@ export interface MemberCardBlockProps {
   mapSrc: string;
 }
 
-const LABELS = {
+interface MemberCardLabels {
+  brand: string;
+  chip: string;
+  chipExpiring: string;
+  chipGrace: string;
+  chipExpired: string;
+  chipSuspended: string;
+  pending: string;
+  flipToBack: string;
+  flipToFront: string;
+  barcode: string;
+  download: string;
+  downloading: string;
+  downloadDone: string;
+  downloadFailed: string;
+  changeTheme: string;
+  themeTitle: string;
+  themeHint: string;
+  themeSaveError: string;
+  theme: string;
+  themeAuto: string;
+  themeAutoShort: string;
+  themeGroup: { korda: string; ppij: string; seasons: string; nusantara: string };
+  motto: string;
+  barcodeHint: string;
+  graceBack: string;
+  expiredBack: string;
+  suspendedBack: string;
+  unitLabel: string;
+  validLabel: string;
+  endedLabel: string;
+}
+
+const LABELS: Record<"id" | "en", MemberCardLabels> = {
   id: {
     brand: "PPI Jepang",
     chip: "Aktif",
@@ -125,9 +158,9 @@ const LABELS = {
     validLabel: "Valid to",
     endedLabel: "Ended",
   },
-} as const;
+};
 
-type L = (typeof LABELS)["id"];
+type L = MemberCardLabels;
 
 const MAX_X = 10;
 const MAX_Y = 14;
